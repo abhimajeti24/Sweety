@@ -15,6 +15,7 @@ import { errorHandler } from './middleware/errorHandler.js';
 import { notFound } from './middleware/notFound.js';
 import { requireJson } from './middleware/requireJson.js';
 import { timeZone } from './middleware/timeZone.js';
+import { authRoutes } from './routes/auth.routes.js';
 import { healthRoutes } from './routes/health.routes.js';
 
 const CLIENT_DIST = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../client/dist');
@@ -64,6 +65,7 @@ export function createApp() {
 
   app.use('/api', requireJson, timeZone);
   app.use('/api/health', healthRoutes);
+  app.use('/api/auth', authRoutes);
   app.use('/api', notFound);
 
   if (config.isProduction && existsSync(CLIENT_DIST)) serveClient(app);
