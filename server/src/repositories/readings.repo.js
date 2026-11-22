@@ -96,6 +96,25 @@ export async function listReadingsInRange({ userId, from, to }, db = pool) {
   return rows.map(toReading);
 }
 
+/**
+ * Highest, lowest, average and count for an inclusive date range. The average is rounded to one
+ * decimal in SQL (numeric ROUND rounds half away from zero), so JS never has to round floats.
+ * An empty range gives count 0 and nulls.
+ * @returns {Promise<{ count: number, highest: number | null, lowest: number | null, average: number | null }>}
+ */
+export async function getStatsForRange({ userId, from, to }, db = pool) {
+  const { rows } = await db.query(
+    `SELECT COUNT(*)::int                               AS count,
+            MAX(value_mg_dl)::int                       AS highest,
+            MIN(value_mg_dl)::int                       AS lowest,
+            ROUND(AVG(value_mg_dl)::numeric, 1)::float8 AS average
+     FROM readings
+     WHERE user_id = $1 AND reading_date BETWEEN $2 AND $3`,
+    [userId, from, to],
+  );
+  return rows[0];
+}
+
 /** @returns {Promise<Reading>} */
 export async function insertReading({ userId, date, slot, value }, db = pool) {
   const { rows } = await db.query(
