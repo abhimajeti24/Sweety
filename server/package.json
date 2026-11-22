@@ -1,0 +1,11 @@
+{
+  "name": "@sweety/server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sweety REST API: Express 5 + PostgreSQL.",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "vitest run"
+  }
+}

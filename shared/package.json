@@ -1,0 +1,14 @@
+{
+  "name": "@sweety/shared",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Validation rules, constants and date helpers shared by the Sweety client and server.",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "scripts": {
+    "test": "vitest run"
+  }
+}
