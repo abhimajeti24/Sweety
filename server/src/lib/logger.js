@@ -8,7 +8,7 @@ export const logger = pino({
   level: config.logLevel,
   // Readable, coloured lines while developing; plain JSON everywhere else.
   transport: isDevelopment
-    ? { target: 'pino-pretty', options: { translateTime: 'HH:MM:ss', ignore: 'pid,hostname' } }
+    ? { target: 'pino-pretty', options: { translateTime: 'SYS:HH:MM:ss', ignore: 'pid,hostname' } }
     : undefined,
   redact: {
     paths: [
