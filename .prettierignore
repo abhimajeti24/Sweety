@@ -9,3 +9,5 @@ docs/screenshots
 # Written by Impeccable's tools; keep their exact output
 client/DESIGN.md
 client/.impeccable
+e2e/results
+e2e/report

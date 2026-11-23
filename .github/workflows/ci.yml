@@ -1,4 +1,5 @@
-# Lint, format check, all tests (against a real PostgreSQL) and a production build on every push.
+# Lint, format check, unit and integration tests (real PostgreSQL and Redis), a production build,
+# then the browser tests against that build, on every push.
 name: CI
 
 on:
@@ -49,3 +50,41 @@ jobs:
       - run: npm run format:check
       - run: npm test
       - run: npm run build
+
+  # The app in a real browser: production build, every rule message, roles, keyboard use,
+  # layout at seven widths and axe accessibility scans, at desktop and phone size.
+  e2e:
+    runs-on: ubuntu-latest
+    needs: test
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: sweety
+          POSTGRES_PASSWORD: sweety
+          POSTGRES_DB: sweety
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U sweety -d sweety"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgres://sweety:sweety@localhost:5432/sweety
+      JWT_SECRET: ci-only-secret-that-is-at-least-thirty-two-characters
+      APP_TIMEZONE: Asia/Kolkata
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: e2e/report

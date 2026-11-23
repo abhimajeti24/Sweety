@@ -45,6 +45,11 @@ export default [
     },
   },
   {
+    // Browser tests run in Node but pass callbacks into the page, which use browser globals.
+    files: ['e2e/**/*.js'],
+    languageOptions: { globals: { ...globals.node, ...globals.browser } },
+  },
+  {
     files: ['**/test/**/*.{js,jsx}', '**/*.test.{js,jsx}'],
     languageOptions: { globals: { ...globals.node } },
   },
