@@ -4,6 +4,7 @@ import { useId } from 'react';
 import { PencilSimpleIcon, PlusIcon, TrashIcon } from '@phosphor-icons/react';
 import { MAX_READINGS_PER_DAY, SLOTS, UNIT } from '@sweety/shared';
 import { Button, IconButton } from '../Button/Button.jsx';
+import { RangeBadge } from '../RangeBadge/RangeBadge.jsx';
 import { Skeleton } from '../Skeleton/Skeleton.jsx';
 import styles from './DayStrip.module.css';
 
@@ -41,10 +42,13 @@ function FilledTile({ slot, reading, readOnly, onEdit, onDelete }) {
         <span className={styles.loggedMark} aria-hidden="true" />
         {slot.label}
       </p>
-      <p className={styles.value}>
-        <span className="mono">{reading.value}</span>
-        <span className={styles.unit}>{UNIT}</span>
-      </p>
+      <div className={styles.valueBlock}>
+        <p className={styles.value}>
+          <span className="mono">{reading.value}</span>
+          <span className={styles.unit}>{UNIT}</span>
+        </p>
+        <RangeBadge value={reading.value} />
+      </div>
       {!readOnly && (
         <div className={styles.tileActions}>
           <IconButton

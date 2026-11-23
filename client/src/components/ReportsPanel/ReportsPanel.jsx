@@ -6,6 +6,7 @@ import { firstEmptySlot } from '../../lib/readingRules.js';
 import { Button } from '../Button/Button.jsx';
 import { ErrorState } from '../ErrorState/ErrorState.jsx';
 import { MonthChart } from '../MonthChart/MonthChart.jsx';
+import { RangeNote } from '../RangeBadge/RangeBadge.jsx';
 import { ReportCard } from '../ReportCard/ReportCard.jsx';
 import styles from './ReportsPanel.module.css';
 
@@ -72,6 +73,7 @@ export function ReportsPanel({ date, reports, series, onAddReading }) {
           emptyMessage={ranges ? emptyRangeMessage(ranges.monthly.range) : ''}
         />
       </div>
+      <RangeNote />
 
       {series.isError ? (
         <ErrorState message={series.error.message} onRetry={series.refetch} />

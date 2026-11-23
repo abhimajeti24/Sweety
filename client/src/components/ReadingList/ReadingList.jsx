@@ -2,6 +2,7 @@
 import { PencilSimpleIcon, TrashIcon } from '@phosphor-icons/react';
 import { UNIT } from '@sweety/shared';
 import { IconButton } from '../Button/Button.jsx';
+import { RangeBadge } from '../RangeBadge/RangeBadge.jsx';
 import styles from './ReadingList.module.css';
 
 /**
@@ -15,7 +16,10 @@ export function ReadingList({ readings, onEdit, onDelete }) {
     <ul className={styles.list}>
       {readings.map((reading) => (
         <li key={reading.id} className={styles.row}>
-          <span className={styles.slot}>{reading.slotLabel}</span>
+          <span className={styles.slot}>
+            {reading.slotLabel}
+            <RangeBadge value={reading.value} />
+          </span>
           <span className={styles.value}>
             <span className="mono">{reading.value}</span>
             <span className={styles.unit}>{UNIT}</span>

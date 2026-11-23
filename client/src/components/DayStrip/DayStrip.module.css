@@ -96,6 +96,13 @@
   flex: none;
 }
 
+.valueBlock {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+  align-self: center;
+}
+
 .value {
   display: flex;
   align-items: baseline;

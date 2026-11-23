@@ -8,6 +8,7 @@ import { ConfirmDialog } from '../../components/ConfirmDialog/ConfirmDialog.jsx'
 import { DateControl } from '../../components/DateControl/DateControl.jsx';
 import { DayStrip } from '../../components/DayStrip/DayStrip.jsx';
 import { ErrorState } from '../../components/ErrorState/ErrorState.jsx';
+import { RangeNote } from '../../components/RangeBadge/RangeBadge.jsx';
 import { ReadingDialog } from '../../components/ReadingDialog/ReadingDialog.jsx';
 import { ReportCard } from '../../components/ReportCard/ReportCard.jsx';
 import { useToast } from '../../components/Toast/Toast.jsx';
@@ -93,6 +94,8 @@ export function TodayPage() {
           See reports for {formatDisplayDate(date)}
         </ButtonLink>
       </p>
+
+      <RangeNote />
 
       {dialog && <ReadingDialog {...dialog} onClose={() => setDialog(null)} />}
       {pendingDelete && (

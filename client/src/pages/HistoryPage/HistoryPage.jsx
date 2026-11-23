@@ -17,6 +17,7 @@ import { ConfirmDialog } from '../../components/ConfirmDialog/ConfirmDialog.jsx'
 import { EmptyState } from '../../components/EmptyState/EmptyState.jsx';
 import { ErrorState } from '../../components/ErrorState/ErrorState.jsx';
 import { Pagination } from '../../components/Pagination/Pagination.jsx';
+import { RangeNote } from '../../components/RangeBadge/RangeBadge.jsx';
 import { ReadingDialog } from '../../components/ReadingDialog/ReadingDialog.jsx';
 import { ReadingList } from '../../components/ReadingList/ReadingList.jsx';
 import { Skeleton } from '../../components/Skeleton/Skeleton.jsx';
@@ -171,6 +172,7 @@ export function HistoryPage() {
       )}
 
       {body}
+      {readings.length > 0 && <RangeNote />}
 
       {editing && <ReadingDialog reading={editing} onClose={() => setEditing(null)} />}
       {pendingDelete && (

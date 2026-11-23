@@ -1,6 +1,6 @@
 // Layout for logged-in pages: a Violeta top bar on phones that becomes a left sidebar from 960px,
 // with the main navigation and the account controls.
-import { NavLink, Outlet, useNavigate } from 'react-router';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router';
 import {
   ChartLineIcon,
   ListBulletsIcon,
@@ -9,6 +9,7 @@ import {
   UsersThreeIcon,
 } from '@phosphor-icons/react';
 import { useAuth } from '../../context/AuthContext.jsx';
+import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary.jsx';
 import { Wordmark } from '../Wordmark/Wordmark.jsx';
 import styles from './AppShell.module.css';
 
@@ -22,6 +23,7 @@ const DOCTOR_LINKS = [{ to: '/doctor', label: 'Patients', icon: UsersThreeIcon }
 export function AppShell() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const links = user?.role === 'doctor' ? DOCTOR_LINKS : PATIENT_LINKS;
 
   async function handleLogout() {
@@ -65,7 +67,10 @@ export function AppShell() {
         </div>
       </header>
       <main id="main" className={styles.main} tabIndex={-1}>
-        <Outlet />
+        {/* Keyed by path: a crash on one page clears when the user navigates away. */}
+        <ErrorBoundary key={location.pathname}>
+          <Outlet />
+        </ErrorBoundary>
       </main>
     </div>
   );
