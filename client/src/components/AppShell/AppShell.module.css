@@ -176,7 +176,10 @@
     margin-left: calc(var(--space-3) * -1);
   }
 
+  /* width: auto, not 100%: the main column takes what the sidebar leaves, so the page never
+     scrolls sideways between 960 and 1384 px (100% plus the sidebar margin did). */
   .main {
+    width: auto;
     margin-left: var(--sidebar-width);
     max-width: calc(var(--content-max) + var(--space-7) * 2);
     padding: var(--space-7) var(--space-7) var(--space-8);

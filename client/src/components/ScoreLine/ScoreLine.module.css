@@ -35,8 +35,9 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 6px;
-  width: 160px;
-  flex: none;
+  /* 160px when there is room, shrinking (never below 96px) on the narrowest phones. */
+  flex: 0 1 160px;
+  min-width: 96px;
 }
 
 .segment {
@@ -53,6 +54,6 @@
 
 @media (min-width: 720px) {
   .lg .segments {
-    width: 200px;
+    flex-basis: 200px;
   }
 }
