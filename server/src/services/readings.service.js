@@ -113,7 +113,7 @@ function parseListQuery(query) {
 }
 
 /**
- * A page of the user's readings plus pagination details.
+ * A page of the user's readings, the full count for each date on the page, and pagination details.
  * @param {number} userId
  * @param {Record<string, unknown>} query
  */
@@ -123,5 +123,11 @@ export async function listReadings(userId, query) {
     readingsRepo.listReadings({ userId, from, to, limit, offset: (page - 1) * limit }),
     readingsRepo.countReadings({ userId, from, to }),
   ]);
-  return { data, pagination: { page, limit, total, totalPages: Math.ceil(total / limit) } };
+  const dates = [...new Set(data.map((reading) => reading.date))];
+  const dayCounts = await readingsRepo.countReadingsByDate({ userId, dates });
+  return {
+    data,
+    dayCounts,
+    pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
+  };
 }

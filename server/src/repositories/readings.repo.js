@@ -85,6 +85,22 @@ export async function countReadings({ userId, from = null, to = null }, db = poo
   return rows[0].total;
 }
 
+/**
+ * How many readings the user has on each of the given dates, so a paginated list can show
+ * "3 of 4 logged" for a day even when that day is split across two pages.
+ * @returns {Promise<Record<string, number>>}
+ */
+export async function countReadingsByDate({ userId, dates }, db = pool) {
+  if (dates.length === 0) return {};
+  const { rows } = await db.query(
+    `SELECT reading_date, COUNT(*)::int AS count FROM readings
+     WHERE user_id = $1 AND reading_date = ANY($2::date[])
+     GROUP BY reading_date`,
+    [userId, dates],
+  );
+  return Object.fromEntries(rows.map((row) => [row.reading_date, row.count]));
+}
+
 /** Every reading in an inclusive date range, oldest first (for the daily list and the chart). */
 export async function listReadingsInRange({ userId, from, to }, db = pool) {
   const { rows } = await db.query(

@@ -19,6 +19,8 @@ describe('GET /api/readings pagination', () => {
   it('returns the last partial page', async () => {
     const response = await agent.get('/api/readings?limit=10&page=3').expect(200);
     expect(response.body.data).toHaveLength(5);
+    // 2026-10-10 is split across pages 2 and 3, but its count covers the whole day.
+    expect(response.body.dayCounts).toEqual({ '2026-10-10': 4, '2026-10-09': 1 });
     expect(response.body.pagination).toEqual({ page: 3, limit: 10, total: 25, totalPages: 3 });
   });
 
