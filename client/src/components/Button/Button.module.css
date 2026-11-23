@@ -85,13 +85,17 @@
   transition: background-color var(--duration) var(--ease-out);
 }
 
+/* Delete icons stay quiet at rest so the values are the loudest marks in a row; red appears only
+   when the user points at one (and in the confirmation dialog). */
 .iconButton.danger {
   background: transparent;
-  color: var(--danger);
+  color: var(--ink-muted);
 }
 
-.iconButton.danger:hover {
+.iconButton.danger:hover,
+.iconButton.danger:focus-visible {
   background: var(--danger-50);
+  color: var(--danger);
 }
 
 .iconButton:disabled {

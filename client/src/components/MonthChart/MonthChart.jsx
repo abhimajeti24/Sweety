@@ -1,7 +1,7 @@
 // Line chart of a month's readings: day of month across, mg/dl up, one line per slot. Each slot
 // has its own colour AND marker shape, the legend can focus one slot, and a table view lists every
 // value, so nothing depends on colour or hover alone.
-import { useId, useMemo, useState } from 'react';
+import { useId, useMemo, useState, useSyncExternalStore } from 'react';
 import {
   CartesianGrid,
   Line,
@@ -31,6 +31,22 @@ const SERIES = [
   { ...SLOTS[3], color: 'var(--series-4)', shape: 'diamond' },
 ];
 const MARKER = 4.5;
+const NARROW_QUERY = '(max-width: 599px)';
+
+function subscribeToNarrow(onChange) {
+  const media = window.matchMedia(NARROW_QUERY);
+  media.addEventListener('change', onChange);
+  return () => media.removeEventListener('change', onChange);
+}
+
+/** True on phone-width screens, where the chart uses smaller markers. */
+function useNarrowScreen() {
+  return useSyncExternalStore(
+    subscribeToNarrow,
+    () => window.matchMedia(NARROW_QUERY).matches,
+    () => false,
+  );
+}
 const AXIS_TICK = { fontFamily: 'var(--font-mono)', fontSize: 11, fill: 'var(--ink-muted)' };
 
 /** True for a logged value; days with no reading in a slot are null. */
@@ -129,6 +145,8 @@ function ChartTooltip({ active, payload, label, monthLabel }) {
 export function MonthChart({ month, readings, refreshing = false }) {
   const headingId = useId();
   const [focused, setFocused] = useState(null);
+  const narrow = useNarrowScreen();
+  const markerSize = narrow ? 3 : MARKER;
   const monthLabel = formatMonthLabel(month);
   const rows = useMemo(() => (readings ? toRows(month, readings) : []), [month, readings]);
 
@@ -210,7 +228,12 @@ export function MonthChart({ month, readings, refreshing = false }) {
                       isAnimationActive={false}
                       dot={(props) => (
                         <g key={`${series.key}-${props.index}`} opacity={dimmed ? 0.15 : 1}>
-                          <Marker {...props} shape={series.shape} color={series.color} />
+                          <Marker
+                            {...props}
+                            shape={series.shape}
+                            color={series.color}
+                            size={markerSize}
+                          />
                         </g>
                       )}
                       activeDot={

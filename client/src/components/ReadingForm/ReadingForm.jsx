@@ -6,7 +6,7 @@ import { checkDayRules } from '../../lib/readingRules.js';
 import { focusFirstError, splitApiError } from '../../lib/forms.js';
 import { Button } from '../Button/Button.jsx';
 import { ErrorState } from '../ErrorState/ErrorState.jsx';
-import { Field } from '../Field/Field.jsx';
+import { Field, FormErrorAnnouncer } from '../Field/Field.jsx';
 import styles from './ReadingForm.module.css';
 
 const FIELDS = ['date', 'slot', 'value'];
@@ -90,6 +90,7 @@ export function ReadingForm({
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
       {formError && <ErrorState message={formError} />}
+      <FormErrorAnnouncer errors={errors} />
 
       <Field id="reading-date" label="Date" error={errors.date}>
         {(props) => (

@@ -1,5 +1,6 @@
 .shell {
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .skipLink {
@@ -146,7 +147,6 @@
 
   .active {
     background: var(--violeta-700);
-    box-shadow: inset 3px 0 0 var(--turquesa);
   }
 
   .account {

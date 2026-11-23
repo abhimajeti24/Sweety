@@ -9,9 +9,9 @@
 }
 
 .compact {
-  padding: var(--space-4);
-  border-style: dashed;
-  background: var(--paper);
+  padding: 0;
+  border: 0;
+  background: none;
 }
 
 .motif {

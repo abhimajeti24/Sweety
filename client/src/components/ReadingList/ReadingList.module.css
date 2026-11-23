@@ -1,3 +1,8 @@
+/* Columns like a scorecard: every value and every badge lines up down the list. */
+.container {
+  container: readings / inline-size;
+}
+
 .list {
   margin: 0;
   padding: 0;
@@ -6,11 +11,18 @@
 
 .row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) 6.5em 6.5em;
+  grid-template-areas: 'slot value badge';
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-1) var(--space-3);
   min-height: 52px;
+  padding: var(--space-1) 0;
   border-bottom: 1px solid var(--line);
+}
+
+.editable .row {
+  grid-template-columns: minmax(0, 1fr) 6.5em 6.5em auto;
+  grid-template-areas: 'slot value badge actions';
 }
 
 .row:last-child {
@@ -18,19 +30,17 @@
 }
 
 .slot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-1) var(--space-2);
+  grid-area: slot;
   color: var(--ink);
+  white-space: nowrap;
 }
 
 .value {
+  grid-area: value;
   display: inline-flex;
   align-items: baseline;
   justify-content: flex-end;
   gap: var(--space-2);
-  min-width: 5.75em;
 }
 
 .value :global(.mono) {
@@ -44,6 +54,29 @@
   color: var(--ink-muted);
 }
 
+.badge {
+  grid-area: badge;
+}
+
 .actions {
+  grid-area: actions;
   display: inline-flex;
+  gap: var(--space-2);
+}
+
+/* Narrow (a phone, or a report card): two even lines per reading, slot and value on the first,
+   badge and actions on the second, so a slot name never breaks in the middle. */
+@container readings (max-width: 440px) {
+  .row,
+  .editable .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'slot value'
+      'badge actions';
+    padding: var(--space-2) 0;
+  }
+
+  .actions {
+    justify-self: end;
+  }
 }

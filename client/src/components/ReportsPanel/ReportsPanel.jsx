@@ -39,6 +39,7 @@ export function ReportsPanel({ date, reports, series, onAddReading }) {
       <div className={styles.cards} aria-busy={reports.isFetching || undefined}>
         <ReportCard
           title="Daily"
+          range={daily?.range}
           rangeLabel={formatDisplayDate(date)}
           stats={daily?.stats}
           readings={daily?.readings}
@@ -62,12 +63,14 @@ export function ReportsPanel({ date, reports, series, onAddReading }) {
         />
         <ReportCard
           title="Month-to-date"
+          range={ranges?.monthToDate.range}
           rangeLabel={ranges ? formatRange(ranges.monthToDate.range.from, date) : ''}
           stats={ranges?.monthToDate.stats}
           emptyMessage={ranges ? emptyRangeMessage(ranges.monthToDate.range) : ''}
         />
         <ReportCard
           title="Monthly"
+          range={ranges?.monthly.range}
           rangeLabel={ranges ? formatRange(ranges.monthly.range.from, ranges.monthly.range.to) : ''}
           stats={ranges?.monthly.stats}
           emptyMessage={ranges ? emptyRangeMessage(ranges.monthly.range) : ''}

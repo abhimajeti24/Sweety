@@ -1,4 +1,5 @@
-// A friendly "nothing here yet" message that says what to do next.
+// A friendly "nothing here yet" message that says what to do next. The compact variant, used
+// inside cards, is plain text: a box inside a card would be a nested card.
 import { SlotMotif } from '../Wordmark/Wordmark.jsx';
 import styles from './EmptyState.module.css';
 
@@ -11,7 +12,7 @@ import styles from './EmptyState.module.css';
 export function EmptyState({ message, action, compact = false }) {
   return (
     <div className={`${styles.empty} ${compact ? styles.compact : ''}`}>
-      <SlotMotif filled={0} className={styles.motif} />
+      {!compact && <SlotMotif filled={0} className={styles.motif} />}
       <p className={styles.message}>{message}</p>
       {action}
     </div>

@@ -162,3 +162,15 @@
   color: var(--ink-muted);
   font-family: var(--font-sans);
 }
+
+/* Phones: the four legend chips repack as a 2 x 2 grid in whole cells. */
+@media (max-width: 599px) {
+  .legend {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .legendItem {
+    padding: 0 var(--space-2);
+  }
+}

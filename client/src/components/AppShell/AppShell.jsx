@@ -1,5 +1,6 @@
 // Layout for logged-in pages: a Violeta top bar on phones that becomes a left sidebar from 960px,
 // with the main navigation and the account controls.
+import { Suspense, useEffect, useRef } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router';
 import {
   ChartLineIcon,
@@ -10,6 +11,7 @@ import {
 } from '@phosphor-icons/react';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary.jsx';
+import { Skeleton } from '../Skeleton/Skeleton.jsx';
 import { Wordmark } from '../Wordmark/Wordmark.jsx';
 import styles from './AppShell.module.css';
 
@@ -25,6 +27,18 @@ export function AppShell() {
   const navigate = useNavigate();
   const location = useLocation();
   const links = user?.role === 'doctor' ? DOCTOR_LINKS : PATIENT_LINKS;
+  const mainRef = useRef(null);
+  const firstRender = useRef(true);
+
+  // After moving to another page, put focus at the start of the new content so keyboard and
+  // screen reader users do not have to travel back through the navigation.
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    mainRef.current?.focus();
+  }, [location.pathname]);
 
   async function handleLogout() {
     await logout();
@@ -66,10 +80,12 @@ export function AppShell() {
           </button>
         </div>
       </header>
-      <main id="main" className={styles.main} tabIndex={-1}>
+      <main id="main" ref={mainRef} className={styles.main} tabIndex={-1}>
         {/* Keyed by path: a crash on one page clears when the user navigates away. */}
         <ErrorBoundary key={location.pathname}>
-          <Outlet />
+          <Suspense fallback={<Skeleton height={240} radius="var(--radius-card)" />}>
+            <Outlet />
+          </Suspense>
         </ErrorBoundary>
       </main>
     </div>

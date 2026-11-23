@@ -7,7 +7,13 @@ import prettier from 'eslint-config-prettier';
 
 export default [
   {
-    ignores: ['**/node_modules/**', '**/dist/**', '**/coverage/**', '_study/**'],
+    ignores: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/coverage/**',
+      '_study/**',
+      '.playwright-mcp/**',
+    ],
   },
   js.configs.recommended,
   {

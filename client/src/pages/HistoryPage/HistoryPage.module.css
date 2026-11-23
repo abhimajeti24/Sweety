@@ -65,12 +65,20 @@
   background: var(--surface);
 }
 
+.groupHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--line);
+}
+
 .groupDate {
   display: flex;
   align-items: baseline;
   gap: var(--space-3);
-  padding: var(--space-3) 0;
-  border-bottom: 1px solid var(--line);
   font-family: var(--font-sans);
   font-size: var(--text-md);
   color: var(--violeta);

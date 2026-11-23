@@ -88,3 +88,20 @@ export function PasswordInput({ className, ...props }) {
     </>
   );
 }
+
+/**
+ * Announces how many fields need attention after a failed submit, for screen reader users whose
+ * focus lands on the first invalid field and who would not otherwise hear about the others.
+ * @param {{ errors: Record<string, string> }} props
+ */
+export function FormErrorAnnouncer({ errors }) {
+  const count = Object.keys(errors).length;
+  let message = '';
+  if (count === 1) message = 'One field needs attention.';
+  else if (count > 1) message = `${count} fields need attention.`;
+  return (
+    <p className="visually-hidden" aria-live="polite">
+      {message}
+    </p>
+  );
+}

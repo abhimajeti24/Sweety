@@ -1,15 +1,28 @@
 // The route table. Guests see login and register; patients and doctors each get their own pages.
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router';
 import { AppShell } from './components/AppShell/AppShell.jsx';
 import { GuestRoute, ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute.jsx';
-import { DoctorPatientPage } from './pages/DoctorPatientPage/DoctorPatientPage.jsx';
-import { DoctorPatientsPage } from './pages/DoctorPatientsPage/DoctorPatientsPage.jsx';
 import { HistoryPage } from './pages/HistoryPage/HistoryPage.jsx';
 import { LoginPage } from './pages/LoginPage/LoginPage.jsx';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage.jsx';
 import { RegisterPage } from './pages/RegisterPage/RegisterPage.jsx';
-import { ReportsPage } from './pages/ReportsPage/ReportsPage.jsx';
 import { TodayPage } from './pages/TodayPage/TodayPage.jsx';
+
+// The chart library is large, so pages that draw charts load on first visit, not up front.
+const ReportsPage = lazy(() =>
+  import('./pages/ReportsPage/ReportsPage.jsx').then((module) => ({ default: module.ReportsPage })),
+);
+const DoctorPatientsPage = lazy(() =>
+  import('./pages/DoctorPatientsPage/DoctorPatientsPage.jsx').then((module) => ({
+    default: module.DoctorPatientsPage,
+  })),
+);
+const DoctorPatientPage = lazy(() =>
+  import('./pages/DoctorPatientPage/DoctorPatientPage.jsx').then((module) => ({
+    default: module.DoctorPatientPage,
+  })),
+);
 
 export function App() {
   return (

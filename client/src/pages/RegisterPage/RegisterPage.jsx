@@ -5,7 +5,7 @@ import { validateRegister } from '@sweety/shared';
 import { AuthForm, AuthLayout, AuthSwitch } from '../../components/AuthLayout/AuthLayout.jsx';
 import { Button } from '../../components/Button/Button.jsx';
 import { ErrorState } from '../../components/ErrorState/ErrorState.jsx';
-import { Field, PasswordInput } from '../../components/Field/Field.jsx';
+import { Field, FormErrorAnnouncer, PasswordInput } from '../../components/Field/Field.jsx';
 import { useAuth } from '../../context/AuthContext.jsx';
 import { focusFirstError, splitApiError } from '../../lib/forms.js';
 
@@ -55,6 +55,7 @@ export function RegisterPage() {
     >
       <AuthForm onSubmit={handleSubmit}>
         {formError && <ErrorState message={formError} />}
+        <FormErrorAnnouncer errors={errors} />
         <Field id="register-name" label="Name" error={errors.name}>
           {(props) => (
             <input

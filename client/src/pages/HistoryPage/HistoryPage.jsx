@@ -20,6 +20,7 @@ import { Pagination } from '../../components/Pagination/Pagination.jsx';
 import { RangeNote } from '../../components/RangeBadge/RangeBadge.jsx';
 import { ReadingDialog } from '../../components/ReadingDialog/ReadingDialog.jsx';
 import { ReadingList } from '../../components/ReadingList/ReadingList.jsx';
+import { ScoreLine } from '../../components/ScoreLine/ScoreLine.jsx';
 import { Skeleton } from '../../components/Skeleton/Skeleton.jsx';
 import { useToast } from '../../components/Toast/Toast.jsx';
 import { useDeleteReading, useReadingsPage, useToday } from '../../hooks/useReadings.js';
@@ -82,6 +83,7 @@ export function HistoryPage() {
   const readings = query.data?.data ?? [];
   const groups = groupByDate(readings);
   const total = query.data?.pagination.total ?? 0;
+  const dayCounts = query.data?.dayCounts ?? {};
 
   let body;
   if (query.isError) {
@@ -115,10 +117,14 @@ export function HistoryPage() {
         <ol className={styles.groups} aria-busy={query.isPlaceholderData || undefined}>
           {groups.map((group) => (
             <li key={group.date} className={styles.group}>
-              <h2 className={styles.groupDate}>
-                <span className="mono">{formatDisplayDate(group.date)}</span>
-                <span className={styles.weekday}>{weekdayName(group.date)}</span>
-              </h2>
+              <div className={styles.groupHeader}>
+                <h2 className={styles.groupDate}>
+                  <span className="mono">{formatDisplayDate(group.date)}</span>
+                  <span className={styles.weekday}>{weekdayName(group.date)}</span>
+                </h2>
+                {/* The whole day's count, even when the day continues on another page. */}
+                <ScoreLine logged={dayCounts[group.date] ?? group.readings.length} />
+              </div>
               <ReadingList
                 readings={group.readings}
                 onEdit={setEditing}

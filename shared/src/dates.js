@@ -89,6 +89,16 @@ export function addDays(isoDate, days) {
   return toIsoDate(moved.getUTCFullYear(), moved.getUTCMonth() + 1, moved.getUTCDate());
 }
 
+/** Number of calendar days from `from` to `to`, counting both ends ('2026-10-01' to '2026-10-15' is 15). */
+export function countDaysInclusive(from, to) {
+  const toUtc = (isoDate) => {
+    const { year, month, day } = parseIsoDate(isoDate);
+    return Date.UTC(year, month - 1, day);
+  };
+  const MS_PER_DAY = 86_400_000;
+  return Math.round((toUtc(to) - toUtc(from)) / MS_PER_DAY) + 1;
+}
+
 /** First and last day of a 'YYYY-MM' month. */
 export function getMonthRange(isoMonth) {
   const [year, month] = isoMonth.split('-').map(Number);
