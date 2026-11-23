@@ -37,4 +37,17 @@ describe('buildConfig', () => {
       buildConfig({ ...validEnv, NODE_ENV: 'test', DATABASE_URL_TEST: validEnv.DATABASE_URL }),
     ).toThrow(/different database/);
   });
+
+  it('refuses to flush the app Redis during tests', () => {
+    const redis = 'redis://localhost:6379/0';
+    expect(() =>
+      buildConfig({
+        ...validEnv,
+        NODE_ENV: 'test',
+        DATABASE_URL_TEST: 'postgres://localhost/sweety_test',
+        REDIS_URL: redis,
+        REDIS_URL_TEST: redis,
+      }),
+    ).toThrow(/different Redis database/);
+  });
 });

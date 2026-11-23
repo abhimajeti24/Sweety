@@ -1,5 +1,6 @@
 import request from 'supertest';
 import { describe, expect, it } from 'vitest';
+import { config } from '../src/config.js';
 import { pool } from '../src/db/pool.js';
 import { app, createUserAndLogin } from './helpers.js';
 
@@ -131,8 +132,9 @@ describe('request hygiene', () => {
     expect(response.body.error.code).toBe('NOT_FOUND');
   });
 
-  it('reports health', async () => {
+  it('reports health, including Redis when it is configured', async () => {
     const response = await request(app).get('/api/health').expect(200);
-    expect(response.body).toEqual({ status: 'ok', db: 'ok', redis: 'disabled' });
+    const redis = config.redisUrl ? 'ok' : 'disabled';
+    expect(response.body).toEqual({ status: 'ok', db: 'ok', redis });
   });
 });

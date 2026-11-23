@@ -35,6 +35,10 @@ export function buildConfig(env) {
   if (isTest && databaseUrl && databaseUrl === env.DATABASE_URL) {
     problems.push('DATABASE_URL_TEST must point to a different database than DATABASE_URL.');
   }
+  // The tests flush their Redis before every test, so it must never be the app's Redis database.
+  if (isTest && env.REDIS_URL_TEST && env.REDIS_URL_TEST === env.REDIS_URL) {
+    problems.push('REDIS_URL_TEST must point to a different Redis database than REDIS_URL.');
+  }
 
   const jwtSecret = env.JWT_SECRET ?? '';
   if (jwtSecret.length < MIN_SECRET_LENGTH) {
