@@ -1,0 +1,68 @@
+.container {
+  container: stats / inline-size;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.item {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.item:nth-child(odd) {
+  padding-right: var(--space-3);
+}
+
+.item:nth-child(even) {
+  padding-left: var(--space-3);
+  border-left: 1px solid var(--line);
+}
+
+.label {
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+
+.value {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 var(--space-2);
+  margin: 0;
+}
+
+.value :global(.mono) {
+  font-size: var(--text-xl);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.unit {
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+}
+
+/* The wide variant: four across when the container has the room. */
+@container stats (min-width: 560px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .item:nth-child(odd),
+  .item:nth-child(even) {
+    padding: var(--space-3) var(--space-4);
+    border-left: 1px solid var(--line);
+  }
+
+  .item:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+}

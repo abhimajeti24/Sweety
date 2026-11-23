@@ -93,3 +93,11 @@
 .iconButton.danger:hover {
   background: var(--danger-50);
 }
+
+.iconButton:disabled {
+  opacity: 0.4;
+}
+
+.iconButton.ghost:hover:not(:disabled) {
+  background: var(--lavanda-50);
+}

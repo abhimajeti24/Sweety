@@ -1,0 +1,132 @@
+.strip {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* Score line: "2 of 4 logged" beside the four segments. */
+.score {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-5);
+}
+
+.scoreText {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.scoreText :global(.mono) {
+  color: var(--violeta);
+  font-weight: 500;
+}
+
+.segments {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  width: min(100%, 240px);
+}
+
+.segment {
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: var(--lavanda-50);
+  box-shadow: inset 0 0 0 1px var(--lavanda-100);
+}
+
+.segmentFilled {
+  background: var(--turquesa);
+  box-shadow: none;
+}
+
+/* Tiles repack in whole cells: 2 x 2 on phones, 4 across from 720px. */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 720px) {
+  .tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.tile {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--space-2);
+  min-height: 164px;
+  padding: var(--space-4);
+  border-radius: var(--radius-card);
+}
+
+.filled {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
+.empty {
+  background: transparent;
+  border: 1.5px dashed var(--field-border);
+}
+
+.slotLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+.loggedMark {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--turquesa);
+  flex: none;
+}
+
+.value {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  align-self: center;
+}
+
+.value :global(.mono) {
+  font-size: var(--text-3xl);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--violeta);
+}
+
+.unit {
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+
+.missing {
+  align-self: center;
+  color: var(--ink-muted);
+}
+
+.tileActions {
+  display: flex;
+  gap: var(--space-1);
+  margin: 0 calc(var(--space-2) * -1) calc(var(--space-2) * -1);
+}
+
+.empty .tileActions {
+  margin: 0;
+}

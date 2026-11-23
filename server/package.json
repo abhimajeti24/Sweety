@@ -6,7 +6,7 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "dev": "node --watch src/index.js",
+    "dev": "node --watch-path=src --watch-path=../shared/src src/index.js",
     "start": "node src/index.js",
     "test": "vitest run",
     "db:migrate": "node src/db/migrate.js",

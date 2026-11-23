@@ -5,6 +5,7 @@ import { GuestRoute, ProtectedRoute } from './components/ProtectedRoute/Protecte
 import { LoginPage } from './pages/LoginPage/LoginPage.jsx';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage.jsx';
 import { RegisterPage } from './pages/RegisterPage/RegisterPage.jsx';
+import { TodayPage } from './pages/TodayPage/TodayPage.jsx';
 
 export function App() {
   return (
@@ -16,6 +17,9 @@ export function App() {
 
       <Route element={<ProtectedRoute />}>
         <Route element={<AppShell />}>
+          <Route element={<ProtectedRoute role="patient" />}>
+            <Route index element={<TodayPage />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Route>
