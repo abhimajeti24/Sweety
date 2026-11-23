@@ -115,6 +115,27 @@ export async function getStatsForRange({ userId, from, to }, db = pool) {
   return rows[0];
 }
 
+/**
+ * Patients with fewer than four readings on a date, with the slots they did log.
+ * The LEFT JOIN keeps patients with no readings at all (they count as 0).
+ * @returns {Promise<Array<{ userId: number, logged: number, slots: string[] }>>}
+ */
+export async function listPatientsBelowDailyLimit({ date, limit }, db = pool) {
+  const { rows } = await db.query(
+    `SELECT u.id AS user_id,
+            COUNT(r.id)::int AS logged,
+            COALESCE(array_agg(r.slot::text) FILTER (WHERE r.id IS NOT NULL), '{}') AS slots
+     FROM users u
+     LEFT JOIN readings r ON r.user_id = u.id AND r.reading_date = $1
+     WHERE u.role = 'patient'
+     GROUP BY u.id
+     HAVING COUNT(r.id) < $2
+     ORDER BY u.id`,
+    [date, limit],
+  );
+  return rows.map((row) => ({ userId: row.user_id, logged: row.logged, slots: row.slots }));
+}
+
 /** @returns {Promise<Reading>} */
 export async function insertReading({ userId, date, slot, value }, db = pool) {
   const { rows } = await db.query(
