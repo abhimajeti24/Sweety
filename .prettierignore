@@ -6,3 +6,6 @@ package-lock.json
 docs/screenshots
 **/.impeccable/hook.cache.json
 .playwright-mcp
+# Written by Impeccable's tools; keep their exact output
+client/DESIGN.md
+client/.impeccable
