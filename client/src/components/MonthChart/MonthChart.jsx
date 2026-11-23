@@ -160,7 +160,13 @@ export function MonthChart({ month, readings, refreshing = false }) {
         <figure className={styles.figure} aria-label={summary}>
           <div className={styles.plot} aria-hidden="true">
             <ResponsiveContainer width="100%" height={320}>
-              <LineChart data={rows} margin={{ top: 12, right: 12, bottom: 4, left: 0 }}>
+              {/* The plot is visual only (the table below is its accessible twin), so Recharts'
+                  keyboard layer is off: nothing focusable may sit inside aria-hidden. */}
+              <LineChart
+                data={rows}
+                margin={{ top: 12, right: 12, bottom: 4, left: 0 }}
+                accessibilityLayer={false}
+              >
                 <CartesianGrid vertical={false} stroke="var(--line)" />
                 <ReferenceArea
                   y1={RANGE_LOW_BELOW}
@@ -233,7 +239,12 @@ export function MonthChart({ month, readings, refreshing = false }) {
         </figure>
         <details className={styles.details}>
           <summary>Show the readings as a table</summary>
-          <div className={styles.tableWrap}>
+          <div
+            className={styles.tableWrap}
+            role="region"
+            aria-label={`Readings in ${monthLabel}`}
+            tabIndex={0}
+          >
             <table className={styles.table}>
               <caption className="visually-hidden">
                 Readings in {monthLabel} by day and time slot, in {UNIT}
