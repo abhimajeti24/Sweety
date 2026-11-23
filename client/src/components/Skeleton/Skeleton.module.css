@@ -1,0 +1,12 @@
+.skeleton {
+  display: block;
+  border-radius: var(--radius-control);
+  background: var(--lavanda-50);
+  animation: breathe 1.4s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  50% {
+    background: var(--lavanda-100);
+  }
+}

@@ -1,0 +1,35 @@
+.region {
+  position: fixed;
+  inset-inline: 0;
+  bottom: var(--space-5);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 50;
+  padding-inline: var(--space-4);
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-control);
+  background: var(--violeta);
+  color: #fff;
+  font-weight: 550;
+  box-shadow: var(--shadow-dialog);
+  animation: enter var(--duration) var(--ease-out);
+}
+
+.icon {
+  color: var(--turquesa);
+  flex: none;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}

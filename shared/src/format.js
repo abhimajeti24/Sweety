@@ -38,6 +38,14 @@ export function formatDisplayDate(isoDate) {
   return `${day} ${MONTHS_SHORT[month - 1]} ${year}`;
 }
 
+const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+/** '2026-10-15' becomes 'Thursday'. Uses UTC so the machine timezone cannot shift the day. */
+export function weekdayName(isoDate) {
+  const { year, month, day } = parseIsoDate(isoDate);
+  return WEEKDAYS[new Date(Date.UTC(year, month - 1, day)).getUTCDay()];
+}
+
 /** '2026-10-15' becomes '15 Oct' (no year). */
 export function formatDayMonth(isoDate) {
   const { month, day } = parseIsoDate(isoDate);

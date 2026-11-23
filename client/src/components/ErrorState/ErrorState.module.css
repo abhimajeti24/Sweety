@@ -1,0 +1,20 @@
+.error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid #f3c6c2;
+  border-radius: var(--radius-card);
+  background: var(--danger-50);
+  color: var(--danger);
+}
+
+.icon {
+  flex: none;
+}
+
+.message {
+  flex: 1 1 200px;
+  font-weight: 550;
+}

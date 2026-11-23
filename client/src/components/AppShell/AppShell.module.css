@@ -1,0 +1,180 @@
+.shell {
+  min-height: 100vh;
+}
+
+.skipLink {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  z-index: 100;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--violeta);
+  font-weight: 600;
+}
+
+.skipLink:focus {
+  top: var(--space-3);
+}
+
+/* Phones: a top bar with the brand row and a three-tab navigation row. */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--violeta);
+  color: #fff;
+  padding: var(--space-3) var(--space-4) 0;
+}
+
+.bar :focus-visible {
+  outline-color: var(--turquesa);
+  box-shadow: none;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--touch-target);
+}
+
+.logoutCompact,
+.logout {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch-target);
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--on-violeta-muted);
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+
+.logoutCompact:hover,
+.logout:hover {
+  background: var(--violeta-700);
+  color: #fff;
+}
+
+.nav {
+  display: flex;
+  margin-top: var(--space-2);
+}
+
+.navLink {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  color: var(--on-violeta-muted);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition:
+    color var(--duration) var(--ease-out),
+    border-color var(--duration) var(--ease-out);
+}
+
+.navLink:hover {
+  color: #fff;
+}
+
+.active {
+  color: #fff;
+  border-bottom-color: var(--turquesa);
+}
+
+.account {
+  display: none;
+}
+
+.main {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-4) var(--space-8);
+}
+
+.main:focus {
+  outline: none;
+}
+
+/* From 960px: a fixed left sidebar. */
+@media (min-width: 960px) {
+  .bar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: var(--sidebar-width);
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-6) var(--space-4) var(--space-5);
+  }
+
+  .brandRow {
+    padding-inline: var(--space-3);
+  }
+
+  .logoutCompact {
+    display: none;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-top: var(--space-7);
+  }
+
+  .navLink {
+    flex: none;
+    justify-content: flex-start;
+    gap: var(--space-3);
+    padding: 0 var(--space-3);
+    border-bottom: 0;
+    border-radius: var(--radius-control);
+  }
+
+  .navLink:hover {
+    background: var(--violeta-700);
+  }
+
+  .active {
+    background: var(--violeta-700);
+    box-shadow: inset 3px 0 0 var(--turquesa);
+  }
+
+  .account {
+    display: block;
+    margin-top: auto;
+    padding: var(--space-4) var(--space-3) 0;
+    border-top: 1px solid rgb(255 255 255 / 0.14);
+  }
+
+  .accountName {
+    font-weight: 650;
+    color: #fff;
+  }
+
+  .accountEmail {
+    font-size: var(--text-sm);
+    color: var(--on-violeta-muted);
+    overflow-wrap: anywhere;
+  }
+
+  .logout {
+    margin-top: var(--space-3);
+    margin-left: calc(var(--space-3) * -1);
+  }
+
+  .main {
+    margin-left: var(--sidebar-width);
+    max-width: calc(var(--content-max) + var(--space-7) * 2);
+    padding: var(--space-7) var(--space-7) var(--space-8);
+  }
+}

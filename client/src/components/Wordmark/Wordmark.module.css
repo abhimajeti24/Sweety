@@ -1,0 +1,28 @@
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.md {
+  font-size: var(--text-xl);
+}
+
+.lg {
+  font-size: var(--text-3xl);
+}
+
+.motif {
+  width: 44px;
+  height: 12px;
+  flex: none;
+}
+
+.lg .wordmarkMotif {
+  width: 66px;
+  height: 18px;
+}

@@ -1,0 +1,69 @@
+/* Design tokens: the only place raw colours, sizes and timings are written.
+   Contrast ratios in comments are measured against the background named. */
+:root {
+  /* Brand (given) */
+  --violeta: #46216d; /* white text on it 12.4:1 */
+  --lavanda: #a07dff; /* accent fills and chart line; never white body text on it (3.1:1) */
+  --turquesa: #19cece; /* progress fills only; never text or icons on light grounds (2.0:1) */
+
+  /* Supporting */
+  --ink: #1b1026; /* 17.5:1 on paper */
+  --ink-muted: #6b5c7b; /* 5.8:1 on paper */
+  --paper: #fbf9ff;
+  --surface: #ffffff;
+  --line: #e6ddf5; /* decorative hairlines only */
+  --field-border: #8b7ba1; /* 3.9:1 on white: input outlines must reach 3:1 (WCAG 1.4.11) */
+  --lavanda-50: #f3eeff; /* violeta text on it 10.9:1 */
+  --lavanda-100: #e6dcff; /* violeta text on it 9.5:1 */
+  --violeta-700: #5a2d8a; /* white text on it 9.7:1 */
+  --on-violeta-muted: #d9ccf7; /* secondary text on violeta 8.2:1 */
+  --turquesa-50: #e0f8f8;
+  --turquesa-800: #0b6b6b; /* on turquesa-50 5.7:1 */
+  --danger: #b3261e; /* 6.5:1 on white */
+  --danger-50: #fdecea; /* danger text on it 5.7:1 */
+  --warn-text: #8a4b00; /* on warn-50 6.2:1 */
+  --warn-50: #fff4e0;
+
+  /* Type */
+  --font-display: 'Funnel Display Variable', 'Funnel Sans Variable', system-ui, sans-serif;
+  --font-sans: 'Funnel Sans Variable', system-ui, sans-serif;
+  --font-mono: 'Martian Mono', ui-monospace, monospace;
+  --text-xs: 0.8rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.563rem;
+  --text-2xl: 1.953rem;
+  --text-3xl: 2.441rem;
+  --text-4xl: 3.052rem;
+  --leading-body: 1.5;
+  --leading-tight: 1.15;
+
+  /* Space (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Shape and depth */
+  --radius-card: 14px;
+  --radius-control: 10px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 1px 2px rgb(70 33 109 / 0.05), 0 6px 16px -8px rgb(70 33 109 / 0.12);
+  --shadow-dialog: 0 24px 48px -12px rgb(27 16 38 / 0.28);
+  --focus-ring: 0 0 0 4px var(--lavanda-100);
+
+  /* Motion: hover, dialogs and toasts only */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration: 180ms;
+
+  /* Layout */
+  --sidebar-width: 248px;
+  --content-max: 1040px;
+  --control-height: 48px;
+  --touch-target: 44px;
+}

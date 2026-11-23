@@ -6,6 +6,7 @@ import {
   formatMonthLabel,
   formatRange,
   slotLabel,
+  weekdayName,
   withArticle,
 } from '../src/format.js';
 
@@ -46,6 +47,11 @@ describe('date formatting', () => {
 
   it('can join with "and" for sentences', () => {
     expect(formatRange('2026-09-01', '2026-09-30', 'and')).toBe('1 Sep and 30 Sep 2026');
+  });
+
+  it('names the weekday', () => {
+    expect(weekdayName('2026-10-15')).toBe('Thursday');
+    expect(weekdayName('2028-02-29')).toBe('Tuesday');
   });
 
   it('names a month', () => {

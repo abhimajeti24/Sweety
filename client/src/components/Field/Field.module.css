@@ -1,0 +1,123 @@
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.label {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.controlWrap {
+  position: relative;
+}
+
+.control {
+  width: 100%;
+  min-height: var(--control-height);
+  padding: 0 var(--space-4);
+  border: 1px solid var(--field-border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  color: var(--ink);
+  transition:
+    border-color var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.control:hover {
+  border-color: var(--violeta-700);
+}
+
+.control:focus-visible {
+  outline: none;
+  border-color: var(--violeta);
+  box-shadow:
+    0 0 0 1px var(--violeta),
+    var(--focus-ring);
+}
+
+select.control {
+  appearance: none;
+  padding-right: var(--space-7);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='%2346216D' d='M213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-4) center;
+  background-size: 18px;
+}
+
+input[type='date'].control {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+input[type='date'].control::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+.withSuffix {
+  padding-right: 88px;
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+}
+
+.withToggle {
+  padding-right: 56px;
+}
+
+.suffix {
+  position: absolute;
+  right: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+  pointer-events: none;
+}
+
+.toggle {
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--violeta);
+}
+
+.toggle:hover {
+  background: var(--lavanda-50);
+}
+
+.invalid {
+  border-color: var(--danger);
+  border-width: 2px;
+}
+
+.invalid:hover {
+  border-color: var(--danger);
+}
+
+.hint {
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+}
+
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  color: var(--danger);
+  font-size: var(--text-sm);
+  font-weight: 550;
+}
+
+.errorIcon {
+  flex: none;
+  margin-top: 1px;
+}
