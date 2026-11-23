@@ -17,10 +17,12 @@ export function AuthProvider({ children }) {
     retry: false,
   });
 
-  // Forget everything cached for the previous user, then mark nobody as logged in.
+  // Mark nobody as logged in, then forget everything cached for the previous user. The ['me']
+  // query is updated, not removed: removing it (queryClient.clear()) would leave the observer
+  // above showing the old user, and the login page would bounce straight back to the app.
   const clearSession = useCallback(() => {
-    queryClient.clear();
     queryClient.setQueryData(ME_KEY, null);
+    queryClient.removeQueries({ predicate: (query) => query.queryKey[0] !== ME_KEY[0] });
   }, [queryClient]);
 
   useEffect(() => {
