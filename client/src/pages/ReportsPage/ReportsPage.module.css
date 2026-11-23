@@ -1,0 +1,26 @@
+.page {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.heading {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.sub {
+  color: var(--ink-muted);
+}
+
+.sub :global(.mono) {
+  color: var(--ink);
+  font-size: var(--text-sm);
+}

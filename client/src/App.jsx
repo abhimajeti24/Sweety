@@ -6,6 +6,7 @@ import { HistoryPage } from './pages/HistoryPage/HistoryPage.jsx';
 import { LoginPage } from './pages/LoginPage/LoginPage.jsx';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage.jsx';
 import { RegisterPage } from './pages/RegisterPage/RegisterPage.jsx';
+import { ReportsPage } from './pages/ReportsPage/ReportsPage.jsx';
 import { TodayPage } from './pages/TodayPage/TodayPage.jsx';
 
 export function App() {
@@ -21,6 +22,7 @@ export function App() {
           <Route element={<ProtectedRoute role="patient" />}>
             <Route index element={<TodayPage />} />
             <Route path="history" element={<HistoryPage />} />
+            <Route path="reports" element={<ReportsPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Route>
