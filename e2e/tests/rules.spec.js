@@ -47,8 +47,8 @@ test('every rule message appears in the form, then the day fills up', async ({ p
   await expect(page.getByRole('heading', { name: 'All 4 logged' })).toBeVisible();
 
   // A fifth reading: "Add reading" stays available on a full day, so the limit is reachable.
+  // The first slot is preselected on a full day, so Save explains the limit at once.
   await page.getByRole('button', { name: 'Add reading', exact: true }).click();
-  await dialog.getByLabel('Time slot').selectOption('after_lunch');
   await value.fill('150');
   await save.click();
   await expect(dialog.getByText('You can add only 4 readings per day.')).toBeVisible();

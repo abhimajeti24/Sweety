@@ -2,7 +2,7 @@
 // The date lives in the URL (?date=) so back, forward and refresh keep it.
 import { useState } from 'react';
 import { ChartLineIcon, PlusIcon } from '@phosphor-icons/react';
-import { formatDisplayDate, slotLabel, weekdayName } from '@sweety/shared';
+import { SLOTS, formatDisplayDate, slotLabel, weekdayName } from '@sweety/shared';
 import { Button, ButtonLink } from '../../components/Button/Button.jsx';
 import { ConfirmDialog } from '../../components/ConfirmDialog/ConfirmDialog.jsx';
 import { DateControl } from '../../components/DateControl/DateControl.jsx';
@@ -33,7 +33,10 @@ export function TodayPage() {
   const isToday = date === today;
   const dailyStats = report.data?.selectedDate === date ? report.data.daily.stats : undefined;
 
-  const openAdd = (slot = nextSlot ?? '') => setDialog({ defaultSlot: slot, defaultDate: date });
+  // On a full day the first slot is preselected, so Save explains the daily limit straight away
+  // (the user can still change the date to back-fill another day).
+  const openAdd = (slot = nextSlot ?? SLOTS[0].key) =>
+    setDialog({ defaultSlot: slot, defaultDate: date });
 
   async function confirmDelete() {
     await deleteReading.mutateAsync(pendingDelete.id);
