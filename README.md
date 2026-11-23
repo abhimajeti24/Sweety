@@ -91,6 +91,21 @@ npm run db:seed
 
 `npm run db:reset` drops everything, migrates and seeds again (refused when `NODE_ENV=production`).
 
+### Optional: Redis (report cache and reminder job)
+
+Everything works without Redis. To turn on the report cache and the daily reminder job, start a Redis 6.2 or newer and point the app at it in `.env`:
+
+```bash
+docker compose up -d redis    # or a local redis-server (WSL, or a Redis build for Windows)
+```
+
+```
+REDIS_URL=redis://localhost:6379/0
+REDIS_URL_TEST=redis://localhost:6379/1   # the tests empty this database, so keep it separate
+```
+
+Restart the server: `GET /api/health` then reports `"redis": "ok"`, a repeated report is served from Redis, and the reminder is scheduled for `REMINDER_CRON` (8 pm in `APP_TIMEZONE`). To watch the job in a demo, set `REMINDER_CRON=* * * * *` and the server log prints one line per patient every minute, for example `reminder user=19 date=2026-11-23 logged=3/4 missing=after_dinner`. Without Redis, `npm run job:reminders` runs one pass by hand.
+
 ## Run the server
 
 ```bash
@@ -116,7 +131,9 @@ npm test -w client            # the reading form (React Testing Library)
 
 The server tests need `DATABASE_URL_TEST` (the `sweety_test` database). They migrate it, empty the tables before every test, and refuse to run if it points at the same database as `DATABASE_URL`.
 
-What they cover: every validation message, timezone-aware "today", the report ranges (including January and leap years), rounding, empty reports, bcrypt hashing and generic login errors, isolation between users, edit rules, concurrent duplicate adds, pagination, doctor access, the cache and its invalidation, the reminder query, and the form's error display and focus handling. The Redis cache also has a test against a real Redis that runs when `REDIS_URL_TEST` is set.
+What they cover (179 tests): every validation message, timezone-aware "today", the report ranges (including January and leap years), rounding, empty reports, bcrypt hashing and generic login errors, isolation between users, edit rules, concurrent duplicate adds, pagination, doctor access, the cache and its invalidation, the reminder query, and the form's error display and focus handling.
+
+With `REDIS_URL_TEST` set, three more server tests run against the real Redis: the cache round trip, a reminder job queued and run by the BullMQ worker, and the daily schedule being registered only once however often the server starts. Without it they are skipped and everything else still runs. CI starts PostgreSQL and Redis services, so it runs all of them.
 
 ## Demo accounts
 
@@ -146,7 +163,7 @@ The seed is idempotent and builds its data relative to the day it runs, so run i
 | `BCRYPT_ROUNDS`                                     | `12`                    | bcrypt cost, 4 to 15 (tests use 4)                                                    |
 | `COOKIE_SECURE`                                     | `false`                 | `true` behind HTTPS; also turns on HSTS                                               |
 | `REDIS_URL`                                         | empty                   | Enables the report cache and the reminder job when set                                |
-| `REDIS_URL_TEST`                                    | empty                   | Real Redis for the optional cache test                                                |
+| `REDIS_URL_TEST`                                    | empty                   | Redis database for the Redis and BullMQ tests (emptied before each test)              |
 | `REPORT_CACHE_TTL_SECONDS`                          | `300`                   | How long a cached report lives                                                        |
 | `REMINDER_CRON`                                     | `0 20 * * *`            | When the reminder job runs (in `APP_TIMEZONE`)                                        |
 | `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB` | `sweety`                | Used by the Docker database container                                                 |
@@ -287,4 +304,4 @@ Screen recording (2 to 3 minutes): _link to be added_.
 
 ### How I used AI tools
 
-_Optional, to be written by Abhinav._
+I planned the build myself before writing any code: a written plan that traces every requirement in the brief to code and to a test, and fixes the validation order, the schema, the API contract, the phases and their checks. I then used Claude Code (Anthropic's coding agent) to implement that plan phase by phase, committing at each step, and used AI design tools to shape and review the interface: Impeccable to plan the visual direction and to run an independent design review (it raised eight issues and two regressions, all fixed before it approved), a palette validator for the chart colours, and a UX checklist. I did not take the output on trust. The 179 automated tests cover every rule and message in the brief and run in CI against real PostgreSQL and Redis; I ran every flow in the browser, including keyboard-only use; every page passes an axe accessibility scan; and I went through the code file by file with a written guide so that I can explain and change any part of it.
