@@ -84,7 +84,7 @@
   flex: none;
   border-radius: 2px;
   background: var(--turquesa-50);
-  box-shadow: inset 0 0 0 1px #b6eaea;
+  box-shadow: inset 0 0 0 1px var(--turquesa-200);
 }
 
 .tooltip {

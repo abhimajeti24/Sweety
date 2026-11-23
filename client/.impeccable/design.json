@@ -1,0 +1,603 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-23T00:00:00Z",
+  "title": "Design System: Sweety",
+  "extensions": {
+    "colorMeta": {
+      "violeta": {
+        "role": "primary",
+        "displayName": "Violeta",
+        "canonical": "oklch(34.2% 0.126 302)",
+        "tonalRamp": [
+          "#120125",
+          "#310655",
+          "#4e2976",
+          "#6c4998",
+          "#8f6cbe",
+          "#b490e6",
+          "#d6bcfd",
+          "#f2eaff"
+        ]
+      },
+      "violeta-700": {
+        "role": "primary",
+        "displayName": "Deep Violeta",
+        "tonalRamp": [
+          "#120125",
+          "#310655",
+          "#4e2976",
+          "#6c4998",
+          "#8f6cbe",
+          "#b490e6",
+          "#d6bcfd",
+          "#f2eaff"
+        ]
+      },
+      "lavanda": {
+        "role": "secondary",
+        "displayName": "Lavanda",
+        "canonical": "oklch(68.2% 0.186 293)",
+        "tonalRamp": [
+          "#0f0029",
+          "#2c0061",
+          "#4a1596",
+          "#663dba",
+          "#8863e3",
+          "#aa8ffe",
+          "#ccc0fe",
+          "#efecfe"
+        ]
+      },
+      "lavanda-50": {
+        "role": "secondary",
+        "displayName": "Lavanda Mist",
+        "tonalRamp": [
+          "#0f0029",
+          "#2c0061",
+          "#4a1596",
+          "#663dba",
+          "#8863e3",
+          "#aa8ffe",
+          "#ccc0fe",
+          "#efecfe"
+        ]
+      },
+      "lavanda-100": {
+        "role": "secondary",
+        "displayName": "Lavanda Veil",
+        "tonalRamp": [
+          "#0f0029",
+          "#2c0061",
+          "#4a1596",
+          "#663dba",
+          "#8863e3",
+          "#aa8ffe",
+          "#ccc0fe",
+          "#efecfe"
+        ]
+      },
+      "turquesa": {
+        "role": "tertiary",
+        "displayName": "Turquesa",
+        "canonical": "oklch(77.2% 0.129 194)",
+        "tonalRamp": [
+          "#000e0e",
+          "#012a2a",
+          "#014a4a",
+          "#036c6c",
+          "#109292",
+          "#05bcbc",
+          "#43e4e4",
+          "#b4fffe"
+        ]
+      },
+      "turquesa-50": {
+        "role": "tertiary",
+        "displayName": "Turquesa Wash",
+        "tonalRamp": [
+          "#000e0e",
+          "#012a2a",
+          "#014a4a",
+          "#036c6c",
+          "#109292",
+          "#05bcbc",
+          "#43e4e4",
+          "#b4fffe"
+        ]
+      },
+      "turquesa-800": {
+        "role": "tertiary",
+        "displayName": "Deep Turquesa",
+        "tonalRamp": [
+          "#000e0e",
+          "#012a2a",
+          "#014a4a",
+          "#036c6c",
+          "#109292",
+          "#05bcbc",
+          "#43e4e4",
+          "#b4fffe"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(20.0% 0.045 305)",
+        "tonalRamp": [
+          "#10061a",
+          "#291e35",
+          "#453a53",
+          "#645772",
+          "#877a96",
+          "#ab9ebc",
+          "#d1c4e2",
+          "#f3eaff"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "oklch(50.1% 0.052 306)",
+        "tonalRamp": [
+          "#11051c",
+          "#2a1d37",
+          "#473855",
+          "#655675",
+          "#887899",
+          "#ad9dbf",
+          "#d3c2e6",
+          "#f3eafe"
+        ]
+      },
+      "on-violeta-muted": {
+        "role": "neutral",
+        "displayName": "On-Violeta Muted",
+        "tonalRamp": [
+          "#120125",
+          "#310655",
+          "#4e2976",
+          "#6c4998",
+          "#8f6cbe",
+          "#b490e6",
+          "#d6bcfd",
+          "#f2eaff"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "oklch(98.5% 0.008 301)",
+        "tonalRamp": [
+          "#0c0a0e",
+          "#252327",
+          "#403f43",
+          "#5e5d62",
+          "#817f84",
+          "#a5a3a9",
+          "#cbc9cf",
+          "#efedf3"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(91.2% 0.034 302)",
+        "tonalRamp": [
+          "#0e0717",
+          "#272032",
+          "#433c4f",
+          "#61596e",
+          "#847c91",
+          "#a8a0b7",
+          "#cfc6dd",
+          "#f2eaff"
+        ]
+      },
+      "field-border": {
+        "role": "neutral",
+        "displayName": "Field Border",
+        "canonical": "oklch(61.1% 0.059 303)",
+        "tonalRamp": [
+          "#11031f",
+          "#2a1c3b",
+          "#463859",
+          "#655579",
+          "#88789e",
+          "#ac9cc3",
+          "#d3c2eb",
+          "#f2eaff"
+        ]
+      },
+      "danger": {
+        "role": "status",
+        "displayName": "Danger",
+        "canonical": "oklch(50.1% 0.178 28)",
+        "tonalRamp": [
+          "#1f0000",
+          "#4a0303",
+          "#7b0807",
+          "#ac1d17",
+          "#d64a3d",
+          "#fd7565",
+          "#feb5aa",
+          "#fee9e5"
+        ]
+      },
+      "danger-50": {
+        "role": "status",
+        "displayName": "Danger Wash",
+        "tonalRamp": [
+          "#1f0000",
+          "#4a0303",
+          "#7b0807",
+          "#ac1d17",
+          "#d64a3d",
+          "#fd7565",
+          "#feb5aa",
+          "#fee9e5"
+        ]
+      },
+      "warn-text": {
+        "role": "status",
+        "displayName": "Warn Text",
+        "canonical": "oklch(47.9% 0.112 59)",
+        "tonalRamp": [
+          "#150700",
+          "#391c00",
+          "#5f3306",
+          "#8a4b01",
+          "#b16e33",
+          "#d89358",
+          "#feba82",
+          "#ffeada"
+        ]
+      },
+      "warn-50": {
+        "role": "status",
+        "displayName": "Warn Wash",
+        "tonalRamp": [
+          "#150700",
+          "#391c00",
+          "#5f3306",
+          "#8a4b01",
+          "#b16e33",
+          "#d89358",
+          "#feba82",
+          "#ffeada"
+        ]
+      },
+      "series-1": {
+        "role": "data",
+        "displayName": "Series Violeta (Morning, circle)",
+        "canonical": "oklch(46.0% 0.148 303)",
+        "tonalRamp": [
+          "#120124",
+          "#330257",
+          "#51227e",
+          "#7043a0",
+          "#9367c7",
+          "#b88cf0",
+          "#d7bcfd",
+          "#f2eaff"
+        ]
+      },
+      "series-2": {
+        "role": "data",
+        "displayName": "Series Teal (After breakfast, square)",
+        "canonical": "oklch(63.8% 0.105 194)",
+        "tonalRamp": [
+          "#000e0e",
+          "#002a2a",
+          "#004a4a",
+          "#026c6c",
+          "#0f9292",
+          "#40b9b9",
+          "#6ce0df",
+          "#b4fffe"
+        ]
+      },
+      "series-3": {
+        "role": "data",
+        "displayName": "Lavanda (After lunch, triangle)",
+        "canonical": "oklch(68.2% 0.186 293)",
+        "tonalRamp": [
+          "#0f0029",
+          "#2c0061",
+          "#4a1596",
+          "#663dba",
+          "#8863e3",
+          "#aa8ffe",
+          "#ccc0fe",
+          "#efecfe"
+        ]
+      },
+      "series-4": {
+        "role": "data",
+        "displayName": "Series Mauve (After dinner, diamond)",
+        "canonical": "oklch(59.9% 0.115 345)",
+        "tonalRamp": [
+          "#1b0011",
+          "#45012f",
+          "#67204d",
+          "#8a3f6c",
+          "#b0628f",
+          "#d886b4",
+          "#feaeda",
+          "#ffe7f3"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "Sweety beside the four-segment motif, white on Violeta; 2.441rem on the auth panel."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page titles (Today, History, Reports) in Violeta."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section headings such as the chart month."
+      },
+      "title-sm": {
+        "displayName": "Title small",
+        "purpose": "Sub-section headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All running text; 16px floor."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Slot labels, card tabs, small buttons; field labels and buttons use the same weight at 1rem."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Units, badges, reference-range notes and chart captions."
+      },
+      "numeral-hero": {
+        "displayName": "Numeral hero",
+        "purpose": "A logged value on a slot tile, in Violeta."
+      },
+      "numeral-stat": {
+        "displayName": "Numeral stat",
+        "purpose": "Highest, Lowest, Average and Readings in a stat grid, in Ink."
+      },
+      "numeral-row": {
+        "displayName": "Numeral row",
+        "purpose": "Values in reading lists (Violeta) and the value field."
+      },
+      "score-line": {
+        "displayName": "Score line",
+        "purpose": "The signature 'n of 4 logged' on Today, logged count at 500 in Violeta."
+      },
+      "score-line-sm": {
+        "displayName": "Score line small",
+        "purpose": "The score line opposite a report card tab, in Muted Ink."
+      },
+      "date": {
+        "displayName": "Date",
+        "purpose": "Dates on Today, report ranges, history guide words and the date input."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-soft",
+        "value": "0 1px 2px rgb(70 33 109 / 0.05), 0 6px 16px -8px rgb(70 33 109 / 0.12)",
+        "purpose": "Resting lift for report cards, the chart card and filled slot tiles."
+      },
+      {
+        "name": "shadow-dialog",
+        "value": "0 24px 48px -12px rgb(27 16 38 / 0.28)",
+        "purpose": "Floating layers: dialogs, toasts, chart tooltips."
+      },
+      {
+        "name": "focus-ring",
+        "value": "0 0 0 4px #e6dcff",
+        "purpose": "Lavanda Veil halo paired with a 2px Violeta outline at 2px offset on every focusable element on light grounds."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "All state transitions, dialog rise and toast entry."
+      },
+      {
+        "name": "duration",
+        "value": "180ms",
+        "purpose": "Hover colour changes, button press, dialog and toast entry. Everything stops under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "pagination-compact",
+        "value": "max-width: 479px"
+      },
+      {
+        "name": "legend-2x2",
+        "value": "max-width: 599px"
+      },
+      {
+        "name": "tiles-four-across",
+        "value": "720px"
+      },
+      {
+        "name": "sidebar",
+        "value": "960px"
+      },
+      {
+        "name": "readings-fold (container)",
+        "value": "max-width: 440px"
+      },
+      {
+        "name": "stats-four-across (container)",
+        "value": "560px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main action on a screen, such as Add reading or Save.",
+      "html": "<button class=\"ds-btn-primary\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 256 256\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8Z\"/></svg>Add reading</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 24px; border: 1.5px solid transparent; border-radius: 10px; background: var(--violeta, #46216d); color: #fff; font-family: var(--font-sans, 'Funnel Sans Variable', system-ui, sans-serif); font-size: 1rem; font-weight: 600; line-height: 1; cursor: pointer; transition: background-color 180ms cubic-bezier(0.16, 1, 0.3, 1), transform 180ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover { background: var(--violeta-700, #5a2d8a); } .ds-btn-primary:active { transform: translateY(1px); } .ds-btn-primary:focus-visible { outline: 2px solid #46216d; outline-offset: 2px; box-shadow: 0 0 0 4px #e6dcff; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outlined Violeta action, used for Add on empty slot tiles.",
+      "html": "<button class=\"ds-btn-secondary\">Add</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1.5px solid #46216d; border-radius: 10px; background: #fff; color: #46216d; font-family: 'Funnel Sans Variable', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; line-height: 1; cursor: pointer; transition: background-color 180ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-secondary:hover { background: #f3eeff; } .ds-btn-secondary:active { transform: translateY(1px); } .ds-btn-secondary:focus-visible { outline: 2px solid #46216d; outline-offset: 2px; box-shadow: 0 0 0 4px #e6dcff; }"
+    },
+    {
+      "name": "Value Field",
+      "kind": "input",
+      "refersTo": "input-value",
+      "description": "Glucose entry: labelled, Martian Mono value, fixed mg/dl suffix, error in the brief's words.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-v\">Glucose value</label><div class=\"ds-field-wrap\"><input id=\"ds-v\" class=\"ds-field-input\" inputmode=\"numeric\" value=\"148\"><span class=\"ds-field-suffix\">mg/dl</span></div><p class=\"ds-field-hint\">Whole number from 40 to 600.</p></div>",
+      "css": ".ds-field { display: grid; gap: 8px; font-family: 'Funnel Sans Variable', system-ui, sans-serif; color: #1b1026; max-width: 320px; } .ds-field-label { font-weight: 600; } .ds-field-wrap { position: relative; } .ds-field-input { width: 100%; box-sizing: border-box; min-height: 48px; padding: 0 88px 0 16px; border: 1px solid #8b7ba1; border-radius: 10px; background: #fff; color: #1b1026; font-family: 'Martian Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; font-size: 1.25rem; transition: border-color 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-field-input:hover { border-color: #5a2d8a; } .ds-field-input:focus-visible { outline: none; border-color: #46216d; box-shadow: 0 0 0 1px #46216d, 0 0 0 4px #e6dcff; } .ds-field-suffix { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #6b5c7b; font-size: 0.875rem; pointer-events: none; } .ds-field-hint { margin: 0; color: #6b5c7b; font-size: 0.875rem; }"
+    },
+    {
+      "name": "Score Line",
+      "kind": "custom",
+      "refersTo": "score-segment",
+      "description": "Signature: the day summarised like a live score, with four slot segments filled Turquesa in meal order.",
+      "html": "<div class=\"ds-score\"><p class=\"ds-score-text\"><span class=\"ds-score-logged\">2</span> of 4 logged</p><span class=\"ds-score-segs\" aria-hidden=\"true\"><span class=\"ds-seg ds-seg-on\"></span><span class=\"ds-seg ds-seg-on\"></span><span class=\"ds-seg\"></span><span class=\"ds-seg\"></span></span></div>",
+      "css": ".ds-score { display: flex; align-items: center; gap: 16px; } .ds-score-text { margin: 0; font-family: 'Martian Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; font-size: 1.25rem; color: #1b1026; white-space: nowrap; } .ds-score-logged { font-weight: 500; color: #46216d; } .ds-score-segs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; width: 200px; } .ds-seg { height: 10px; border-radius: 999px; background: #f3eeff; box-shadow: inset 0 0 0 1px #e6dcff; } .ds-seg-on { background: #19cece; box-shadow: none; }"
+    },
+    {
+      "name": "Slot Tiles",
+      "kind": "card",
+      "refersTo": "slot-tile-filled",
+      "description": "DayStrip cells: a filled tile lifts with its value; an empty tile waits as a dashed outline with Add.",
+      "html": "<ul class=\"ds-tiles\"><li class=\"ds-tile ds-tile-filled\"><span class=\"ds-tile-label\"><span class=\"ds-dot\"></span>Morning (fasting)</span><span class=\"ds-tile-value\"><span class=\"ds-mono\">104</span><span class=\"ds-unit\">mg/dl</span></span><span class=\"ds-badge-in\">In range</span></li><li class=\"ds-tile ds-tile-empty\"><span class=\"ds-tile-label\">After lunch</span><span class=\"ds-missing\">Not logged</span><button class=\"ds-tile-add\">Add</button></li></ul>",
+      "css": ".ds-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 220px)); gap: 12px; margin: 0; padding: 0; list-style: none; font-family: 'Funnel Sans Variable', system-ui, sans-serif; } .ds-tile { display: grid; grid-template-rows: auto 1fr auto; gap: 8px; min-height: 164px; padding: 16px; border-radius: 14px; box-sizing: border-box; } .ds-tile-filled { background: #fff; border: 1px solid #e6ddf5; box-shadow: 0 1px 2px rgb(70 33 109 / 0.05), 0 6px 16px -8px rgb(70 33 109 / 0.12); } .ds-tile-empty { background: transparent; border: 1.5px dashed #8b7ba1; } .ds-tile-label { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; font-weight: 600; color: #6b5c7b; } .ds-dot { width: 8px; height: 8px; border-radius: 999px; background: #19cece; } .ds-tile-value { display: flex; align-items: baseline; gap: 8px; align-self: center; } .ds-mono { font-family: 'Martian Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; font-size: 2.441rem; font-weight: 500; line-height: 1; color: #46216d; } .ds-unit { font-size: 0.875rem; color: #6b5c7b; } .ds-badge-in { justify-self: start; padding: 1px 8px; border-radius: 999px; background: #e0f8f8; color: #0b6b6b; font-size: 0.8rem; font-weight: 650; } .ds-missing { align-self: center; color: #6b5c7b; } .ds-tile-add { justify-self: start; min-height: 44px; padding: 0 16px; border: 1.5px solid #46216d; border-radius: 10px; background: #fff; color: #46216d; font: inherit; font-size: 0.875rem; font-weight: 600; cursor: pointer; } .ds-tile-add:hover { background: #f3eeff; } .ds-tile-add:focus-visible { outline: 2px solid #46216d; outline-offset: 2px; box-shadow: 0 0 0 4px #e6dcff; }"
+    },
+    {
+      "name": "Report Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A report with its Violeta header tab, small score line, Martian Mono range and a hairline-ruled stat grid.",
+      "html": "<article class=\"ds-card\"><header class=\"ds-card-head\"><div class=\"ds-card-row\"><h2 class=\"ds-card-tab\">Month-to-date</h2><p class=\"ds-card-score\"><b>59</b> of 60 logged</p></div><p class=\"ds-card-range\">1 Oct to 15 Oct 2026</p></header><dl class=\"ds-stats\"><div><dt>Highest</dt><dd><span>259</span> mg/dl</dd></div><div><dt>Lowest</dt><dd><span>85</span> mg/dl</dd></div><div><dt>Average</dt><dd><span>145.8</span> mg/dl</dd></div><div><dt>Readings</dt><dd><span>59</span></dd></div></dl></article>",
+      "css": ".ds-card { display: grid; gap: 16px; max-width: 360px; padding: 16px 24px 24px; border: 1px solid #e6ddf5; border-radius: 14px; background: #fff; box-shadow: 0 1px 2px rgb(70 33 109 / 0.05), 0 6px 16px -8px rgb(70 33 109 / 0.12); font-family: 'Funnel Sans Variable', system-ui, sans-serif; color: #1b1026; } .ds-card-head { display: grid; gap: 8px; } .ds-card-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; } .ds-card-tab { margin: 0; padding: 4px 12px; border-radius: 6px; background: #46216d; color: #fff; font-family: 'Funnel Display Variable', 'Funnel Sans Variable', sans-serif; font-size: 0.875rem; font-weight: 650; letter-spacing: 0.01em; line-height: 1.15; } .ds-card-score, .ds-card-range { margin: 0; font-family: 'Martian Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; font-size: 0.8rem; color: #6b5c7b; white-space: nowrap; } .ds-card-score b { font-weight: 500; color: #1b1026; } .ds-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; border-top: 1px solid #e6ddf5; } .ds-stats div { display: grid; gap: 4px; padding: 12px 0; border-bottom: 1px solid #e6ddf5; } .ds-stats div:nth-child(odd) { padding-right: 12px; } .ds-stats div:nth-child(even) { padding-left: 12px; border-left: 1px solid #e6ddf5; } .ds-stats dt { font-size: 0.875rem; color: #6b5c7b; } .ds-stats dd { margin: 0; font-size: 0.8rem; color: #6b5c7b; } .ds-stats dd span { font-family: 'Martian Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; font-size: 1.563rem; font-weight: 500; color: #1b1026; margin-right: 6px; }"
+    },
+    {
+      "name": "Range Badges",
+      "kind": "chip",
+      "refersTo": "badge-in-range",
+      "description": "Informational reference-range chips, always icon plus word.",
+      "html": "<span class=\"ds-badge ds-badge-low\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 256 256\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M208.49 152.49l-72 72a12 12 0 0 1-17 0l-72-72a12 12 0 0 1 17-17L116 187V40a12 12 0 0 1 24 0v147l51.51-51.52a12 12 0 0 1 17 17Z\"/></svg>Low</span> <span class=\"ds-badge ds-badge-in\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 256 256\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M232.49 80.49l-128 128a12 12 0 0 1-17 0l-56-56a12 12 0 1 1 17-17L96 183 215.51 63.51a12 12 0 0 1 17 17Z\"/></svg>In range</span> <span class=\"ds-badge ds-badge-high\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 256 256\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M208.49 120.49a12 12 0 0 1-17 0L140 69v147a12 12 0 0 1-24 0V69l-51.51 51.49a12 12 0 0 1-17-17l72-72a12 12 0 0 1 17 0l72 72a12 12 0 0 1 0 17Z\"/></svg>High</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 3px; padding: 1px 8px; border-radius: 999px; font-family: 'Funnel Sans Variable', system-ui, sans-serif; font-size: 0.8rem; font-weight: 650; line-height: 1.5; white-space: nowrap; } .ds-badge-low { background: #fdecea; color: #b3261e; } .ds-badge-in { background: #e0f8f8; color: #0b6b6b; } .ds-badge-high { background: #fff4e0; color: #8a4b00; }"
+    },
+    {
+      "name": "Legend Chip",
+      "kind": "chip",
+      "refersTo": "legend-chip",
+      "description": "Chart legend toggle; pressing one focuses its series and dims the rest.",
+      "html": "<button class=\"ds-legend\" aria-pressed=\"true\"><svg width=\"28\" height=\"14\" viewBox=\"0 0 28 14\" aria-hidden=\"true\"><line x1=\"0\" y1=\"7\" x2=\"28\" y2=\"7\" stroke=\"#6a3d9a\" stroke-width=\"2\"/><circle cx=\"14\" cy=\"7\" r=\"4\" fill=\"#6a3d9a\" stroke=\"#fff\" stroke-width=\"2\"/></svg>Morning (fasting)</button> <button class=\"ds-legend\" aria-pressed=\"false\"><svg width=\"28\" height=\"14\" viewBox=\"0 0 28 14\" aria-hidden=\"true\"><line x1=\"0\" y1=\"7\" x2=\"28\" y2=\"7\" stroke=\"#169f9f\" stroke-width=\"2\"/><rect x=\"10\" y=\"3\" width=\"8\" height=\"8\" fill=\"#169f9f\" stroke=\"#fff\" stroke-width=\"2\"/></svg>After breakfast</button>",
+      "css": ".ds-legend { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; border: 1px solid #e6ddf5; border-radius: 999px; background: #fff; color: #1b1026; font-family: 'Funnel Sans Variable', system-ui, sans-serif; font-size: 0.875rem; font-weight: 550; white-space: nowrap; cursor: pointer; transition: background-color 180ms cubic-bezier(0.16, 1, 0.3, 1), border-color 180ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-legend:hover { background: #f3eeff; } .ds-legend[aria-pressed='true'] { border-color: #46216d; background: #f3eeff; } .ds-legend:focus-visible { outline: 2px solid #46216d; outline-offset: 2px; box-shadow: 0 0 0 4px #e6dcff; }"
+    },
+    {
+      "name": "Sidebar Navigation",
+      "kind": "nav",
+      "refersTo": "nav-rail",
+      "description": "The 248px Violeta rail from 960px; on phones it becomes a top bar with Turquesa-underlined tabs.",
+      "html": "<nav class=\"ds-rail\"><span class=\"ds-wordmark\"><svg width=\"44\" height=\"12\" viewBox=\"0 0 44 12\" aria-hidden=\"true\"><rect x=\"0\" width=\"9\" height=\"12\" rx=\"4.5\" fill=\"#19cece\"/><rect x=\"11\" width=\"9\" height=\"12\" rx=\"4.5\" fill=\"#19cece\"/><rect x=\"22\" width=\"9\" height=\"12\" rx=\"4.5\" fill=\"#a07dff\"/><rect x=\"33\" width=\"9\" height=\"12\" rx=\"4.5\" fill=\"#a07dff\"/></svg>Sweety</span><a class=\"ds-nav-link ds-nav-active\" href=\"#\" aria-current=\"page\">Today</a><a class=\"ds-nav-link\" href=\"#\">History</a><a class=\"ds-nav-link\" href=\"#\">Reports</a></nav>",
+      "css": ".ds-rail { display: flex; flex-direction: column; gap: 4px; width: 248px; box-sizing: border-box; padding: 32px 16px 24px; background: #46216d; font-family: 'Funnel Sans Variable', system-ui, sans-serif; } .ds-wordmark { display: inline-flex; align-items: center; gap: 12px; margin: 0 12px 48px; font-family: 'Funnel Display Variable', 'Funnel Sans Variable', sans-serif; font-size: 1.563rem; font-weight: 800; letter-spacing: -0.02em; color: #fff; } .ds-nav-link { display: flex; align-items: center; min-height: 48px; padding: 0 12px; border-radius: 10px; color: #d9ccf7; font-weight: 600; text-decoration: none; transition: color 180ms cubic-bezier(0.16, 1, 0.3, 1), background-color 180ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav-link:hover { background: #5a2d8a; color: #fff; } .ds-nav-active { background: #5a2d8a; color: #fff; } .ds-nav-link:focus-visible { outline: 2px solid #19cece; outline-offset: 2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Day's Scorecard",
+    "overview": "Sweety treats each day as a scorecard of four deliveries: Morning (fasting), After breakfast, After lunch, After dinner. Every screen reads like a live score line: what is logged, what is left, and the numbers that matter, set in fixed-width figures so they line up and never jump. The world refuses the category default of a timestamped feed under a big decorative chart hero; the day, not the event, is the unit.\n\nThe material is a quiet paper ground with a Violeta rail, white cards on lavender hairlines, and small Violeta header tabs that title each card like the head of a ruled scorecard module. Density is deliberately high in the Japanese-catalogue sense: stats pack tight in 2x2 or 4-up grids divided by hairlines, with no inflated whitespace. Colour is a signal system, not decoration: Turquesa fills mark what is logged, Lavanda marks selection, Violeta carries action and headings, and every coloured signal also has a shape, a word or a position so colour is never the only cue.\n\nThe tone is calm and clinical but warm. Nothing is alarming, nothing is playful about health data. Motion exists only for hover, dialogs, toasts and loading placeholders, and every animation stops under reduced motion. Dark mode is out of scope; this is a single light world.",
+    "keyCharacteristics": [
+      "Martian Mono tabular numerals for every value, stat, date and score.",
+      "The score line (\"2 of 4 logged\", \"All 4 logged\") as the signature summary on Today and on every report card header.",
+      "Four-part capacity: four slot tiles, four score segments, four chart series, four segments in the wordmark motif.",
+      "White cards on 1px lavender hairlines with a soft violet-tinted shadow; a Violeta tab names each report card.",
+      "Paper ground, Violeta rail and primary actions, Turquesa only as fill.",
+      "Whole-cell repacking: four across on wide screens, 2x2 on phones, never squeezed.",
+      "WCAG 2.2 AA throughout: 44px touch targets, 3:1 field outlines, a two-layer focus ring."
+    ],
+    "rules": [
+      {
+        "name": "The Turquesa Is Fill Rule",
+        "body": "Turquesa marks \"logged\" as a fill, a dot, an underline or an icon on Violeta. On paper or white it never carries text or a stand-alone icon; when teal text is needed, use Deep Turquesa on Turquesa Wash.",
+        "section": "colors"
+      },
+      {
+        "name": "The Hairline Is Not a Boundary Rule",
+        "body": "Hairline (#e6ddf5) only separates and frames. Anything a user operates (inputs, selects, the date field, empty slot outlines) uses Field Border (#8b7ba1) so it reaches 3:1.",
+        "section": "colors"
+      },
+      {
+        "name": "The Never Colour Alone Rule",
+        "body": "Every coloured signal is paired with something else: badges carry an icon and a word, chart series carry a marker shape, logged tiles carry a value and a dot, and the score line states the count in words.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mono Numbers Rule",
+        "body": "Every glucose value, stat, count, date and score is set in Martian Mono with tabular numerals and -0.02em tracking. Words stay in Funnel Sans; numbers never do.",
+        "section": "typography"
+      },
+      {
+        "name": "The Unit Steps Down Rule",
+        "body": "\"mg/dl\" always follows its value, written exactly so, in Funnel Sans one or two steps smaller and in Muted Ink, baseline-aligned.",
+        "section": "typography"
+      },
+      {
+        "name": "The Whole Cells Rule",
+        "body": "Grids drop a column count, they never squeeze cells: four, then two, never three narrow ones.",
+        "section": "layout"
+      },
+      {
+        "name": "The Guide Words Rule",
+        "body": "A paginated list names the span in view above it (\"15 Oct to 9 Oct 2026\") on a hairline, like the head of a dictionary page.",
+        "section": "layout"
+      },
+      {
+        "name": "The Filled Lifts, Empty Waits Rule",
+        "body": "A logged slot is a lifted white card; an unlogged slot is a flat dashed outline on Paper. Elevation itself says what is done.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do set every glucose value, stat, count and date in Martian Mono with tabular numerals.",
+      "Do summarise a day or range with the score line (\"2 of 4 logged\", \"All 4 logged\") and give every report card a Violeta header tab with the score line opposite.",
+      "Do use Turquesa (#19cece) only as a fill, dot, underline or icon on Violeta to mean \"logged\".",
+      "Do outline every operable control in Field Border (#8b7ba1) and keep Hairline (#e6ddf5) for decoration.",
+      "Do pair every colour signal with a word, icon or marker shape.",
+      "Do keep touch targets at 44px minimum and primary controls at 48px.",
+      "Do repack grids in whole cells: four across, then 2x2.",
+      "Do write \"mg/dl\" exactly, one step smaller, in Muted Ink.",
+      "Do show the reference-range disclaimer wherever range badges or the reference band appear.",
+      "Do confine motion to hover, dialogs, toasts and loading placeholders, and stop all of it under prefers-reduced-motion."
+    ],
+    "donts": [
+      "Don't put text or stand-alone icons in Turquesa or Lavanda on Paper or white (2.0:1 and 3.1:1).",
+      "Don't use background gradients, glassmorphism, emoji as icons or heavy shadows; the Soft card shadow is the ceiling for resting surfaces.",
+      "Don't open a screen with a timestamped feed under a big decorative chart hero.",
+      "Don't add decorative animation to data.",
+      "Don't introduce a dark theme; dark mode is out of scope.",
+      "Don't add new raw colour values outside the token set."
+    ]
+  }
+}

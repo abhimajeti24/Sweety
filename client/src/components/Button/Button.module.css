@@ -71,7 +71,7 @@
 }
 
 .danger:hover:not(:disabled) {
-  background: #951f18;
+  background: var(--danger-700);
 }
 
 .iconButton {

@@ -21,6 +21,9 @@
   --turquesa-800: #0b6b6b; /* on turquesa-50 5.7:1 */
   --danger: #b3261e; /* 6.5:1 on white */
   --danger-50: #fdecea; /* danger text on it 5.7:1 */
+  --danger-200: #f3c6c2; /* error box border (decorative) */
+  --danger-700: #951f18; /* danger button hover; white text on it 8.4:1 */
+  --turquesa-200: #b6eaea; /* rim of the chart's reference band (decorative) */
   --warn-text: #8a4b00; /* on warn-50 6.2:1 */
   --warn-50: #fff4e0;
 
