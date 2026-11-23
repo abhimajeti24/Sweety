@@ -1,4 +1,4 @@
-// A recorded walkthrough that follows the README's recording script, with captions on screen.
+// A recorded walkthrough of every requirement, with captions on screen.
 // Run with `npm run demo:record`; the video lands in e2e/results/<test>/video.webm.
 // It is not part of `npm run test:e2e`.
 import { expect, test } from '@playwright/test';
@@ -187,7 +187,7 @@ test('Sweety walkthrough', async ({ page }) => {
   // 2:30 close
   await caption(
     page,
-    'Backed by 179 automated tests plus these browser tests, run in CI against PostgreSQL and Redis.',
+    'Backed by 180 automated tests and 25 browser tests, run in CI against PostgreSQL and Redis.',
     4000,
   );
 });

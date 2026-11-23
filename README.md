@@ -33,7 +33,7 @@ A blood glucose tracker: log up to four readings a day, one per meal slot, and s
 - [x] Doctor role: a doctor sees read-only reports of patients assigned to them.
 - [x] Report results cached in Redis and invalidated when a reading changes.
 - [x] BullMQ daily job that logs a reminder for patients with fewer than 4 readings.
-- [x] Extras: GitHub Actions CI, reference range badges, keyboard and screen reader support (axe reports no violations).
+- [x] Extras: GitHub Actions CI, Playwright browser tests on a desktop and a phone screen, reference range badges, keyboard and screen reader support (axe reports no violations).
 
 ## Tech stack
 
@@ -45,12 +45,12 @@ A blood glucose tracker: log up to four readings a day, one per meal slot, and s
 | Frontend | React 19, Vite, React Router, TanStack Query, CSS Modules, Recharts, Phosphor icons      |
 | Shared   | One `@sweety/shared` package holds the rules and messages used by both client and server |
 | Optional | Redis (ioredis) for the report cache, BullMQ for the reminder job                        |
-| Tests    | Vitest everywhere, Supertest for the API, React Testing Library for the UI               |
+| Tests    | Vitest, Supertest for the API, React Testing Library, Playwright with axe in the browser |
 | Quality  | ESLint, Prettier, GitHub Actions                                                         |
 
 ## Quick start with Docker
 
-Needs Docker Desktop.
+Needs Docker with Compose: Docker Desktop, or Docker Engine inside WSL 2 on Windows versions that Docker Desktop no longer supports.
 
 ```bash
 cp .env.example .env          # optional: compose has safe defaults
@@ -131,9 +131,20 @@ npm test -w client            # the reading form (React Testing Library)
 
 The server tests need `DATABASE_URL_TEST` (the `sweety_test` database). They migrate it, empty the tables before every test, and refuse to run if it points at the same database as `DATABASE_URL`.
 
-What they cover (179 tests): every validation message, timezone-aware "today", the report ranges (including January and leap years), rounding, empty reports, bcrypt hashing and generic login errors, isolation between users, edit rules, concurrent duplicate adds, pagination, doctor access, the cache and its invalidation, the reminder query, and the form's error display and focus handling.
+What they cover (180 tests: 80 shared, 87 server, 13 client): every validation message, timezone-aware "today", the report ranges (including January and leap years), rounding, empty reports, bcrypt hashing and generic login errors, isolation between users, edit rules, concurrent duplicate adds, pagination, doctor access, the cache and its invalidation, the reminder query and job, the form's error display and focus handling, and logging out.
 
-With `REDIS_URL_TEST` set, three more server tests run against the real Redis: the cache round trip, a reminder job queued and run by the BullMQ worker, and the daily schedule being registered only once however often the server starts. Without it they are skipped and everything else still runs. CI starts PostgreSQL and Redis services, so it runs all of them.
+With `REDIS_URL_TEST` set, three of the server tests run against the real Redis: the cache round trip, a reminder job queued and run by the BullMQ worker, and the daily schedule being registered only once however often the server starts. Without it they are skipped and everything else still runs. CI starts PostgreSQL and Redis services, so it runs all of them.
+
+### Browser tests (Playwright)
+
+```bash
+npx playwright install chromium   # once
+npm run test:e2e                  # builds the client, starts the app on port 4100, runs 25 tests
+```
+
+They need the `sweety` database from `DATABASE_URL` (they reseed it before and after the run, and remove the accounts they register). Each test drives the real app in Chromium: every rule message in the form and the day filling up, a duplicate the browser did not know about, edit and delete, the reports for 15 Oct 2026 and the chart, History paging, register, log out and log in, one patient kept away from another's reading, the doctor's read-only view, keyboard-only use, no sideways scrolling from 360 px to 1920 px, and an axe scan (WCAG 2.2 AA) of every page and dialog. The rules and the axe scans also run on a phone screen (Pixel 7). CI runs them in a separate job after the unit and API tests.
+
+`npm run demo:record` plays a captioned walkthrough (register, every rule message, edit and delete, reports and the chart, History, the doctor's view) and saves it as a video in `e2e/results/`.
 
 ## Demo accounts
 
@@ -251,6 +262,7 @@ client/
   src/api/     fetch wrapper and endpoint functions
   src/hooks/   TanStack Query hooks
   test/        React Testing Library tests
+e2e/           Playwright config, seed and clean-up hooks, and the browser tests
 docs/          screenshots and the assumptions list
 ```
 
@@ -296,7 +308,7 @@ Screen recording (2 to 3 minutes): _link to be added_.
 - Refresh-token rotation and server-side session revocation.
 - Email verification and password reset.
 - An audit log of edits and deletes.
-- End-to-end tests in CI with Playwright, including the axe accessibility check.
+- Run the browser tests on Firefox and WebKit as well as Chromium, and add visual regression screenshots.
 - A mmol/L unit toggle, dark mode and Indian language support.
 - An offline-first PWA that queues readings and syncs later.
 - Doctor notes on readings, and exporting reports as PDF or CSV.
@@ -304,4 +316,4 @@ Screen recording (2 to 3 minutes): _link to be added_.
 
 ### How I used AI tools
 
-I planned the build myself before writing any code: a written plan that traces every requirement in the brief to code and to a test, and fixes the validation order, the schema, the API contract, the phases and their checks. I then used Claude Code (Anthropic's coding agent) to implement that plan phase by phase, committing at each step, and used AI design tools to shape and review the interface: Impeccable to plan the visual direction and to run an independent design review (it raised eight issues and two regressions, all fixed before it approved), a palette validator for the chart colours, and a UX checklist. I did not take the output on trust. The 179 automated tests cover every rule and message in the brief and run in CI against real PostgreSQL and Redis; I ran every flow in the browser, including keyboard-only use; every page passes an axe accessibility scan; and I went through the code file by file with a written guide so that I can explain and change any part of it.
+I planned the build myself before writing any code: a written plan that traces every requirement in the brief to code and to a test, and fixes the validation order, the schema, the API contract, the phases and their checks. I then used Claude Code (Anthropic's coding agent) to implement that plan phase by phase, committing at each step, and used AI design tools to shape and review the interface: Impeccable to plan the visual direction and to run an independent design review (it raised eight issues and two regressions, all fixed before it approved), a palette validator for the chart colours, and a UX checklist. I did not take the output on trust. The 180 automated tests cover every rule and message in the brief and run in CI against real PostgreSQL and Redis; 25 Playwright tests drive the real app in a browser on a desktop and a phone screen, including keyboard-only use and an axe accessibility scan of every page (writing them caught a logout bug and two layout overflows, which I fixed); I also ran every flow by hand; and I went through the code file by file with a written guide so that I can explain and change any part of it.
