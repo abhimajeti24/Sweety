@@ -1,4 +1,5 @@
 .card {
+  container: report-card / inline-size;
   display: grid;
   align-content: start;
   gap: var(--space-4);
@@ -14,14 +15,24 @@
   gap: var(--space-2);
 }
 
-/* The heading sits in a small Violeta tab, like the header of a ruled module; the range keeps to
-   one line and moves under the tab as a whole when the card is narrow. */
+/* The heading sits in a small Violeta tab, like the header of a ruled module, with the score line
+   beside it. The widest pair ("Month-to-date" and "124 of 124 logged") needs about 284px. */
 .titleRow {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-2) var(--space-3);
+  gap: var(--space-3);
+}
+
+/* Narrower than that, the score line goes under the tab on every card. Cards in a row share one
+   width, so they all switch together and the stats below stay level across the row (letting each
+   row wrap on its own moved only the card whose pair did not fit). */
+@container report-card (max-width: 285px) {
+  .titleRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
 }
 
 .title {
@@ -32,6 +43,8 @@
   font-size: var(--text-sm);
   font-weight: 650;
   letter-spacing: 0.01em;
+  /* "Month-to-date" must never break at its hyphens. */
+  white-space: nowrap;
 }
 
 .range {

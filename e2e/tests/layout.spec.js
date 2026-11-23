@@ -20,3 +20,26 @@ test('no horizontal scrolling at any common width', async ({ page }) => {
     }
   }
 });
+
+// Report cards side by side must start their stats at the same height. (At 1280 px the
+// Month-to-date score line once wrapped under its tab on that card only.)
+test('report card headers line up across each row of cards', async ({ page }) => {
+  await login(page, DEMO);
+  await page.goto('/reports?date=2026-10-15');
+  await page.getByRole('article').nth(2).waitFor();
+  for (const width of [...WIDTHS, 960, 1100]) {
+    await page.setViewportSize({ width, height: 800 });
+    const rows = await page.evaluate(() => {
+      const byTop = {};
+      for (const card of document.querySelectorAll('article')) {
+        const header = card.querySelector('header').getBoundingClientRect();
+        const top = Math.round(card.getBoundingClientRect().top);
+        (byTop[top] ??= []).push(Math.round(header.height));
+      }
+      return Object.values(byTop);
+    });
+    for (const heights of rows) {
+      expect(new Set(heights).size, `headers at ${width}px: ${heights.join(', ')}`).toBe(1);
+    }
+  }
+});
