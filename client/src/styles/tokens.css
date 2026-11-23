@@ -24,6 +24,13 @@
   --warn-text: #8a4b00; /* on warn-50 6.2:1 */
   --warn-50: #fff4e0;
 
+  /* Chart series, one per slot in meal order. Brand-family steps chosen with the dataviz
+     palette validator: all inside the lightness band, chroma floor, CVD separation and 3:1. */
+  --series-1: #6a3d9a; /* Morning (fasting), Violeta step */
+  --series-2: #169f9f; /* After breakfast, Turquesa step */
+  --series-3: #a07dff; /* After lunch, Lavanda */
+  --series-4: #b0628f; /* After dinner, mauve */
+
   /* Type */
   --font-display: 'Funnel Display Variable', 'Funnel Sans Variable', system-ui, sans-serif;
   --font-sans: 'Funnel Sans Variable', system-ui, sans-serif;
