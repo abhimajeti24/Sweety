@@ -9,7 +9,7 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
-  await pool.query('TRUNCATE users, readings RESTART IDENTITY CASCADE');
+  await pool.query('TRUNCATE users, readings, doctor_patients RESTART IDENTITY CASCADE');
 });
 
 afterAll(async () => {

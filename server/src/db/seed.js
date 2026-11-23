@@ -1,4 +1,5 @@
-// Demo data: a patient with about two months of readings and a second patient.
+// Demo data: a patient with about two months of readings, a second patient, and a doctor
+// assigned to the first patient.
 // Idempotent: it deletes the demo accounts by email and recreates them, so it can run any time.
 // Readings come from a seeded pseudo-random generator, so a given date always produces the same data.
 import { pathToFileURL } from 'node:url';
@@ -6,12 +7,14 @@ import bcrypt from 'bcrypt';
 import { SLOT_KEYS, addDays, getReportRanges, todayInTimeZone } from '@sweety/shared';
 import { config } from '../config.js';
 import { logger } from '../lib/logger.js';
+import { assignPatient } from '../repositories/doctorPatients.repo.js';
 import { pool, withTransaction } from './pool.js';
 
 export const DEMO_PASSWORD = 'SweetyDemo#2026';
 export const DEMO_ACCOUNTS = [
   { key: 'demo', name: 'Demo Patient', email: 'demo@sweety.test', role: 'patient' },
   { key: 'ravi', name: 'Ravi Kumar', email: 'ravi@sweety.test', role: 'patient' },
+  { key: 'doctor', name: 'Dr. Meera Rao', email: 'doctor@sweety.test', role: 'doctor' },
 ];
 
 /** Mulberry32: a tiny deterministic random number generator returning floats in [0, 1). */
@@ -123,6 +126,8 @@ export async function seed({ today = todayInTimeZone(config.appTimeZone) } = {})
 
     await insertReadings(client, ids.demo, buildDemoReadings(today));
     await insertReadings(client, ids.ravi, buildRaviReadings(today));
+    // The doctor sees the demo patient only; Ravi has no doctor, which proves isolation.
+    await assignPatient({ doctorId: ids.doctor, patientId: ids.demo }, client);
     return ids;
   });
 }

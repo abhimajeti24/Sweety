@@ -18,6 +18,7 @@ import { requireJson } from './middleware/requireJson.js';
 import { requireRole } from './middleware/requireRole.js';
 import { timeZone } from './middleware/timeZone.js';
 import { authRoutes } from './routes/auth.routes.js';
+import { doctorRoutes } from './routes/doctor.routes.js';
 import { healthRoutes } from './routes/health.routes.js';
 import { readingsRoutes } from './routes/readings.routes.js';
 import { reportsRoutes } from './routes/reports.routes.js';
@@ -72,6 +73,7 @@ export function createApp() {
   app.use('/api/auth', authRoutes);
   app.use('/api/readings', requireAuth, requireRole('patient'), readingsRoutes);
   app.use('/api/reports', requireAuth, requireRole('patient'), reportsRoutes);
+  app.use('/api/doctor', requireAuth, requireRole('doctor'), doctorRoutes);
   app.use('/api', notFound);
 
   if (config.isProduction && existsSync(CLIENT_DIST)) serveClient(app);

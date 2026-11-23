@@ -1,0 +1,74 @@
+.page {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.header {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.sub {
+  color: var(--ink-muted);
+}
+
+.list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.list li + li {
+  border-top: 1px solid var(--line);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 72px;
+  padding: var(--space-3) var(--space-5);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color var(--duration) var(--ease-out);
+}
+
+.row:hover {
+  background: var(--lavanda-50);
+}
+
+.row:focus-visible {
+  outline-offset: -2px;
+}
+
+.who {
+  display: grid;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 650;
+  color: var(--violeta);
+}
+
+.email {
+  color: var(--ink-muted);
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex: none;
+  color: var(--violeta);
+  font-weight: 600;
+  font-size: var(--text-sm);
+}

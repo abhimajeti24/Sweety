@@ -1,0 +1,31 @@
+.page {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.back {
+  margin: calc(var(--space-3) * -1) 0 calc(var(--space-2) * -1) calc(var(--space-4) * -1);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.heading {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.sub {
+  color: var(--ink-muted);
+  overflow-wrap: anywhere;
+}
+
+.sub :global(.mono) {
+  color: var(--ink);
+  font-size: var(--text-sm);
+}

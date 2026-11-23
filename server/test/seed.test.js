@@ -18,7 +18,7 @@ describe('seed', () => {
     const first = await countRows();
     await seed({ today: TODAY });
     expect(await countRows()).toEqual(first);
-    expect(first.users).toBe(2);
+    expect(first.users).toBe(3);
   });
 
   it('leaves exactly two readings today for the demo patient', async () => {

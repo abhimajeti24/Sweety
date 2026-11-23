@@ -4,3 +4,4 @@ coverage
 _study
 package-lock.json
 docs/screenshots
+**/.impeccable/hook.cache.json
