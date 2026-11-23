@@ -59,13 +59,15 @@ export function ReportCard({
   return (
     <article className={styles.card} aria-labelledby={headingId} aria-busy={!stats || undefined}>
       <header className={styles.header}>
+        {/* Same two lines on every card (tab and score, then the range), so the stats below
+            start at the same height across a row of cards. */}
         <div className={styles.titleRow}>
           <h2 id={headingId} className={styles.title}>
             {title}
           </h2>
-          <p className={`${styles.range} mono`}>{rangeLabel}</p>
+          {stats && capacity && <ScoreLine logged={stats.count} capacity={capacity} />}
         </div>
-        {stats && capacity && <ScoreLine logged={stats.count} capacity={capacity} />}
+        <p className={`${styles.range} mono`}>{rangeLabel}</p>
       </header>
       {body}
     </article>

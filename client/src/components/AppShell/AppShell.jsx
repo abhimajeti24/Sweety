@@ -37,7 +37,10 @@ export function AppShell() {
       firstRender.current = false;
       return;
     }
-    mainRef.current?.focus();
+    // A new page starts at the top; preventScroll stops the focus call from scrolling the
+    // page heading under the sticky top bar on phones.
+    window.scrollTo(0, 0);
+    mainRef.current?.focus({ preventScroll: true });
   }, [location.pathname]);
 
   async function handleLogout() {

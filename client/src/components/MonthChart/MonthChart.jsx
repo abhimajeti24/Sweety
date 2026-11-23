@@ -177,7 +177,7 @@ export function MonthChart({ month, readings, refreshing = false }) {
         </div>
         <figure className={styles.figure} aria-label={summary}>
           <div className={styles.plot} aria-hidden="true">
-            <ResponsiveContainer width="100%" height={320}>
+            <ResponsiveContainer width="100%" height={narrow ? 360 : 320}>
               {/* The plot is visual only (the table below is its accessible twin), so Recharts'
                   keyboard layer is off: nothing focusable may sit inside aria-hidden. */}
               <LineChart
