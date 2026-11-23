@@ -11,7 +11,7 @@ Thumbs.db
 .idea/
 _study/
 .playwright-mcp/
-.impeccable/hook.cache.json
-.impeccable/*.local.json
-.impeccable/review/
-.impeccable/mocks/
+**/.impeccable/hook.cache.json
+**/.impeccable/*.local.json
+**/.impeccable/review/
+**/.impeccable/mocks/
