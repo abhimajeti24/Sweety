@@ -2,6 +2,7 @@
 import { createApp } from './app.js';
 import { config } from './config.js';
 import { pool } from './db/pool.js';
+import { cache } from './lib/cache.js';
 import { logger } from './lib/logger.js';
 
 const app = createApp();
@@ -12,7 +13,7 @@ const server = app.listen(config.port, () => {
 async function shutdown(signal) {
   logger.info(`${signal} received, shutting down`);
   server.close();
-  await pool.end();
+  await Promise.all([pool.end(), cache.close()]);
   process.exit(0);
 }
 

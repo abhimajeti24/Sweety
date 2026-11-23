@@ -12,6 +12,7 @@ import {
 } from '@sweety/shared';
 import { withTransaction } from '../db/pool.js';
 import { AppError } from '../lib/AppError.js';
+import { cache } from '../lib/cache.js';
 import { parseOptionalInteger } from '../lib/params.js';
 import * as readingsRepo from '../repositories/readings.repo.js';
 
@@ -48,16 +49,19 @@ function readingNotFound() {
  */
 export async function createReading(userId, input, today) {
   const data = validateOrThrow(input, today);
-  return withTransaction(async (client) => {
+  const reading = await withTransaction(async (client) => {
     await readingsRepo.lockUserReadings(userId, client);
     await assertDayRules({ userId, date: data.date, slot: data.slot }, client);
     return readingsRepo.insertReading({ userId, ...data }, client);
   });
+  // After the commit, so a report cached in between cannot hold the old numbers.
+  await cache.bumpUserVersion(userId);
+  return reading;
 }
 
 /** Full replace of one of the user's readings. */
 export async function updateReading(userId, id, input, today) {
-  return withTransaction(async (client) => {
+  const reading = await withTransaction(async (client) => {
     await readingsRepo.lockUserReadings(userId, client);
     const existing = await readingsRepo.findReadingById({ userId, id }, client);
     if (!existing) throw readingNotFound();
@@ -66,11 +70,14 @@ export async function updateReading(userId, id, input, today) {
     await assertDayRules({ userId, date: data.date, slot: data.slot, excludeId: id }, client);
     return readingsRepo.updateReading({ id, userId, ...data }, client);
   });
+  await cache.bumpUserVersion(userId);
+  return reading;
 }
 
 export async function deleteReading(userId, id) {
   const deleted = await readingsRepo.deleteReading({ id, userId });
   if (!deleted) throw readingNotFound();
+  await cache.bumpUserVersion(userId);
 }
 
 export async function getReading(userId, id) {

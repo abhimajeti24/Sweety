@@ -9,6 +9,7 @@ import {
   monthOf,
 } from '@sweety/shared';
 import { AppError } from '../lib/AppError.js';
+import { cache } from '../lib/cache.js';
 import * as readingsRepo from '../repositories/readings.repo.js';
 
 /** ?date defaults to today; it must be a real date and not in the future. */
@@ -42,14 +43,20 @@ export async function buildReports(userId, selectedDate) {
 }
 
 /**
- * GET /api/reports
+ * GET /api/reports. Served from the Redis cache when it holds this user's current version.
  * @param {number} userId
  * @param {Record<string, unknown>} query
  * @param {string} today 'YYYY-MM-DD' in the user's timezone
  */
 export async function getReports(userId, query, today) {
   const selectedDate = parseSelectedDate(query.date, today);
-  return buildReports(userId, selectedDate);
+  const key = await cache.reportKey(userId, selectedDate);
+  const cached = await cache.get(key);
+  if (cached) return cached;
+
+  const reports = await buildReports(userId, selectedDate);
+  await cache.set(key, reports);
+  return reports;
 }
 
 /**
