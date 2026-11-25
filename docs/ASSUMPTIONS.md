@@ -1,4 +1,6 @@
-# Assumptions (running list, merged into the README Notes)
+# Assumptions
+
+The full list of decisions I made where the brief left a gap. The README's Notes section has the short version.
 
 ## Decisions on gaps in the brief
 

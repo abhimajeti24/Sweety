@@ -1,6 +1,6 @@
 # Sweety
 
-[![CI](https://github.com/abhimajeti24/sweety-glucose-tracker/actions/workflows/ci.yml/badge.svg)](https://github.com/abhimajeti24/sweety-glucose-tracker/actions/workflows/ci.yml)
+[![CI](https://github.com/abhimajeti24/Sweety/actions/workflows/ci.yml/badge.svg)](https://github.com/abhimajeti24/Sweety/actions/workflows/ci.yml)
 
 A blood glucose tracker: log up to four readings a day, one per meal slot, and see daily, month-to-date and monthly reports. Built with Node.js, Express, PostgreSQL and React.
 
@@ -53,6 +53,8 @@ A blood glucose tracker: log up to four readings a day, one per meal slot, and s
 Needs Docker with Compose: Docker Desktop, or Docker Engine inside WSL 2 on Windows versions that Docker Desktop no longer supports.
 
 ```bash
+git clone https://github.com/abhimajeti24/Sweety.git
+cd Sweety
 cp .env.example .env          # optional: compose has safe defaults
 docker compose up --build     # PostgreSQL, Redis and the app; migrations run on start
 docker compose exec app npm run db:seed
@@ -65,6 +67,8 @@ Open http://localhost:4000 and log in with a demo account below.
 Prerequisites: Node.js 22 (20 or newer works) and PostgreSQL 16, either installed locally or from Docker.
 
 ```bash
+git clone https://github.com/abhimajeti24/Sweety.git
+cd Sweety
 npm install
 cp .env.example .env
 ```
@@ -263,7 +267,7 @@ client/
   src/hooks/   TanStack Query hooks
   test/        React Testing Library tests
 e2e/           Playwright config, seed and clean-up hooks, and the browser tests
-docs/          screenshots and the assumptions list
+docs/          screenshots, the full assumptions list and the demo video
 ```
 
 ## Screenshots
@@ -280,11 +284,13 @@ docs/          screenshots and the assumptions list
 | ![History](docs/screenshots/15-history.png) History with pagination                             | ![Doctor patients](docs/screenshots/16a-doctor-patients.png) Doctor: patient list                   |
 | ![Doctor report](docs/screenshots/16b-doctor-patient-report.png) Doctor: a patient's reports    | ![Mobile](docs/screenshots/17-today-mobile.png) Today on a phone (390 px)                           |
 
-Screen recording (2 to 3 minutes): _link to be added_.
+Screen recording (2 min 14 s, captioned): [docs/demo/sweety-walkthrough.mp4](docs/demo/sweety-walkthrough.mp4). It registers a new user, shows every validation message, edits and deletes, walks the reports for 15 Oct 2026 and the chart, pages History, and ends on the doctor view. `npm run demo:record` records it again.
 
 ## Notes
 
 ### Assumptions
+
+The short version; [docs/ASSUMPTIONS.md](docs/ASSUMPTIONS.md) has the full list, including API and report details.
 
 1. **PostgreSQL only.** The title says "MERN + PostgreSQL", but the body asks for a PostgreSQL database, so I used PostgreSQL in place of MongoDB with the rest of the MERN-style stack (React, Express, Node).
 2. **Daily limit vs one reading per slot.** With four slots and one reading per slot, a day can never exceed four readings, so the rules overlap. Both messages stay reachable because the server checks them in a fixed order: a full day gets "You can add only 4 readings per day.", otherwise a taken slot gets the duplicate message. The Today page keeps "Add reading" visible on a full day so the limit can be hit from the UI.
