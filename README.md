@@ -135,7 +135,7 @@ npm test -w client            # the reading form (React Testing Library)
 
 The server tests need `DATABASE_URL_TEST` (the `sweety_test` database). They migrate it, empty the tables before every test, and refuse to run if it points at the same database as `DATABASE_URL`.
 
-What they cover (180 tests: 80 shared, 87 server, 13 client): every validation message, timezone-aware "today", the report ranges (including January and leap years), rounding, empty reports, bcrypt hashing and generic login errors, isolation between users, edit rules, concurrent duplicate adds, pagination, doctor access, the cache and its invalidation, the reminder query and job, the form's error display and focus handling, and logging out.
+What they cover (184 tests: 82 shared, 87 server, 15 client): every validation message, timezone-aware "today", the report ranges (including January and leap years), rounding, empty reports, bcrypt hashing and generic login errors, isolation between users, edit rules, concurrent duplicate adds, pagination, doctor access, the cache and its invalidation, the reminder query and job, the form's error display and focus handling, logging out, and filling the login form from a demo account.
 
 With `REDIS_URL_TEST` set, three of the server tests run against the real Redis: the cache round trip, a reminder job queued and run by the BullMQ worker, and the daily schedule being registered only once however often the server starts. Without it they are skipped and everything else still runs. CI starts PostgreSQL and Redis services, so it runs all of them.
 
@@ -143,7 +143,7 @@ With `REDIS_URL_TEST` set, three of the server tests run against the real Redis:
 
 ```bash
 npx playwright install chromium   # once
-npm run test:e2e                  # builds the client, starts the app on port 4100, runs 26 tests
+npm run test:e2e                  # builds the client, starts the app on port 4100, runs 27 tests
 ```
 
 They need the `sweety` database from `DATABASE_URL` (they reseed it before and after the run, and remove the accounts they register). Each test drives the real app in Chromium: every rule message in the form and the day filling up, a duplicate the browser did not know about, edit and delete, the reports for 15 Oct 2026 and the chart, History paging, register, log out and log in, one patient kept away from another's reading, the doctor's read-only view, keyboard-only use, no sideways scrolling from 360 px to 1920 px, and an axe scan (WCAG 2.2 AA) of every page and dialog. The rules and the axe scans also run on a phone screen (Pixel 7). CI runs them in a separate job after the unit and API tests.
@@ -159,6 +159,8 @@ Created by `npm run db:seed` (demo-only credentials, not secrets):
 | Demo Patient  | `demo@sweety.test`   | `SweetyDemo#2026` | patient, about two months of readings, exactly 2 logged today |
 | Ravi Kumar    | `ravi@sweety.test`   | `SweetyDemo#2026` | patient, one week of readings, no doctor                      |
 | Dr. Meera Rao | `doctor@sweety.test` | `SweetyDemo#2026` | doctor, assigned to Demo Patient                              |
+
+The login page lists these three accounts with their passwords, and a "Use" button fills one into the form. They come from one list in `@sweety/shared`, which the seed also reads, so the page always shows the credentials that exist.
 
 The seed is idempotent and builds its data relative to the day it runs, so run it again on the day of a demo.
 
@@ -183,6 +185,7 @@ The seed is idempotent and builds its data relative to the day it runs, so run i
 | `REMINDER_CRON`                                     | `0 20 * * *`            | When the reminder job runs (in `APP_TIMEZONE`)                                        |
 | `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB` | `sweety`                | Used by the Docker database container                                                 |
 | `VITE_API_BASE_URL`                                 | `/api`                  | Where the client sends API requests                                                   |
+| `VITE_SHOW_DEMO_ACCOUNTS`                           | `true`                  | Lists the demo accounts on the login page; `false` hides them                         |
 
 The server checks its settings at startup and exits with a clear message if one is missing or invalid.
 
@@ -322,4 +325,4 @@ The short version; [docs/ASSUMPTIONS.md](docs/ASSUMPTIONS.md) has the full list,
 
 ### How I used AI tools
 
-I planned the build myself before writing any code: a written plan that traces every requirement in the brief to code and to a test, and fixes the validation order, the schema, the API contract, the phases and their checks. I then used Claude Code (Anthropic's coding agent) to implement that plan phase by phase, committing at each step, and used AI design tools to shape and review the interface: Impeccable to plan the visual direction and to run an independent design review (it raised eight issues and two regressions, all fixed before it approved), a palette validator for the chart colours, and a UX checklist. I did not take the output on trust. The 180 automated tests cover every rule and message in the brief and run in CI against real PostgreSQL and Redis; 26 Playwright tests drive the real app in a browser on a desktop and a phone screen, including keyboard-only use and an axe accessibility scan of every page (writing them caught a logout bug and two layout overflows and report cards that fell out of line, which I fixed); I also ran every flow by hand; and I went through the code file by file with a written guide so that I can explain and change any part of it.
+I planned the build myself before writing any code: a written plan that traces every requirement in the brief to code and to a test, and fixes the validation order, the schema, the API contract, the phases and their checks. I then used Claude Code (Anthropic's coding agent) to implement that plan phase by phase, committing at each step, and used AI design tools to shape and review the interface: Impeccable to plan the visual direction and to run an independent design review (it raised eight issues and two regressions, all fixed before it approved), a palette validator for the chart colours, and a UX checklist. I did not take the output on trust. The 184 automated tests cover every rule and message in the brief and run in CI against real PostgreSQL and Redis; 27 Playwright tests drive the real app in a browser on a desktop and a phone screen, including keyboard-only use and an axe accessibility scan of every page (writing them caught a logout bug and two layout overflows and report cards that fell out of line, which I fixed); I also ran every flow by hand; and I went through the code file by file with a written guide so that I can explain and change any part of it.

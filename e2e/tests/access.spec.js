@@ -22,6 +22,19 @@ test('register, log out and log back in', async ({ page }) => {
   await login(page, email);
 });
 
+test('the login page lists the demo accounts and one click fills the form', async ({ page }) => {
+  await page.goto('/login');
+  const panel = page.getByRole('region', { name: 'Demo accounts' });
+  for (const email of [DEMO, RAVI, DOCTOR]) await expect(panel).toContainText(email);
+  await expect(panel.getByText(PASSWORD)).toHaveCount(3);
+
+  await panel.getByRole('button', { name: 'Use the Dr. Meera Rao login' }).click();
+  await expect(page.getByLabel('Email')).toHaveValue(DOCTOR);
+  await expect(page.getByRole('button', { name: 'Log in' })).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/\/doctor$/);
+});
+
 test('wrong password shows the generic message', async ({ page }) => {
   await page.goto('/login');
   await page.getByLabel('Email').fill(DEMO);

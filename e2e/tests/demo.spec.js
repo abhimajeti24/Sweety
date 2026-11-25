@@ -187,7 +187,7 @@ test('Sweety walkthrough', async ({ page }) => {
   // 2:30 close
   await caption(
     page,
-    'Backed by 180 automated tests and 26 browser tests, run in CI against PostgreSQL and Redis.',
+    'Backed by 184 automated tests and 27 browser tests, run in CI against PostgreSQL and Redis.',
     4000,
   );
 });

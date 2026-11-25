@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import { validateLogin } from '@sweety/shared';
 import { AuthForm, AuthLayout, AuthSwitch } from '../../components/AuthLayout/AuthLayout.jsx';
 import { Button } from '../../components/Button/Button.jsx';
+import { DemoAccounts, SHOW_DEMO_ACCOUNTS } from '../../components/DemoAccounts/DemoAccounts.jsx';
 import { ErrorState } from '../../components/ErrorState/ErrorState.jsx';
 import { Field, FormErrorAnnouncer, PasswordInput } from '../../components/Field/Field.jsx';
 import { homePathFor, useAuth } from '../../context/AuthContext.jsx';
@@ -20,9 +21,18 @@ export function LoginPage() {
   const [formError, setFormError] = useState(null);
   const [pending, setPending] = useState(false);
   const refs = { email: useRef(null), password: useRef(null) };
+  const submitRef = useRef(null);
 
   function update(name) {
     return (event) => setValues((current) => ({ ...current, [name]: event.target.value }));
+  }
+
+  // A demo account fills both fields and moves focus to "Log in", so Enter logs straight in.
+  function fillDemoAccount(credentials) {
+    setValues(credentials);
+    setErrors({});
+    setFormError(null);
+    submitRef.current?.focus();
   }
 
   async function handleSubmit(event) {
@@ -80,13 +90,14 @@ export function LoginPage() {
             />
           )}
         </Field>
-        <Button type="submit" block pending={pending} pendingLabel="Logging in...">
+        <Button ref={submitRef} type="submit" block pending={pending} pendingLabel="Logging in...">
           Log in
         </Button>
       </AuthForm>
       <AuthSwitch>
         New to Sweety? <Link to="/register">Create an account</Link>
       </AuthSwitch>
+      {SHOW_DEMO_ACCOUNTS && <DemoAccounts onUse={fillDemoAccount} />}
     </AuthLayout>
   );
 }

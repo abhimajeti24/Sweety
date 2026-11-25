@@ -1,0 +1,82 @@
+/* A quiet Lavanda panel under the login form: clearly a helper, never louder than the form. */
+.panel {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--lavanda-100);
+  border-radius: var(--radius-card);
+  background: var(--lavanda-50);
+}
+
+.head {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.heading {
+  font-size: var(--text-md);
+  color: var(--violeta);
+}
+
+.note {
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+
+.list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--lavanda-100);
+}
+
+.details {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.summary {
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+}
+
+/* Two columns (label, value), so the login and the password start at the same x. */
+.credentials {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0 var(--space-2);
+  margin: var(--space-1) 0 0;
+}
+
+.credential {
+  display: contents;
+}
+
+.credential dt {
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+}
+
+.credential dd {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
